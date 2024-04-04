@@ -1,0 +1,21 @@
+.tabl {
+  padding-top: 120px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+}
+
+@media screen and (max-width: 600px) {
+  .tabl {
+    padding-top: 10px;
+  }
+  .tabl * {
+    font-size: 2.1vw;
+  }
+}
+
+@media screen and (max-width: 391px) {
+  .tabl * {
+    font-size: 5px;
+  }
+}

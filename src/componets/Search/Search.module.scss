@@ -1,0 +1,14 @@
+.filled{
+    scale: 1.1;
+}
+
+.container{
+    display: flex;
+    &__inp{
+        border-radius:  20px 0 0 20px;
+    }
+    &__btn{
+        border-radius:  0 20px 20px 0;
+    }
+
+}

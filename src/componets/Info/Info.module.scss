@@ -1,0 +1,45 @@
+.container{
+    margin: 0 auto;
+    padding-top: 160px;
+    width: 400px;
+    display: grid;
+    grid-template-columns: 50% 50% ;
+
+}
+
+.el{
+   display: flex;
+   justify-content: left;
+   text-align: start;
+}
+
+.ava{
+    display: flex;
+    justify-content: center;
+    width: 30px;
+}
+.zagr {
+    position: absolute;
+    top:300px;
+    width: 100%;
+    &__hed1 {
+      display: flex;
+      justify-content: center;
+    }
+  }
+.gr{
+    margin-top: 20px;
+    display: grid;
+    grid-column: 1/-1;
+}
+.theme,.text{
+    margin-bottom: 10px;
+}
+
+@media screen and (max-width:600px) {
+    .container{
+        padding-top: 10px;
+        padding: 15px;
+        width: 100%;
+    }
+}

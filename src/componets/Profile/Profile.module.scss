@@ -1,0 +1,127 @@
+.container{
+    padding-top: 100px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  
+}
+.Main{
+    color: white;
+    background-color: black;
+    min-height: 100vh;
+}
+.link{
+    display: flex;
+    padding-top: 40px;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+.parent{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 51%;
+    margin-bottom: 20px;
+}
+.parent1{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 51%;
+    margin-bottom: 10px;
+}
+.parent3{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 51%;
+    margin-bottom: 5px;
+}
+.newUsername{
+    display: flex;
+
+}
+.inp{
+    border-radius: 20px 0 0 20px;
+}
+.inp2{
+    border-radius: 20px 0 0 20px;
+    width: 211px;
+}
+.inp3{
+    width: 100%;
+    justify-content: end;
+    border-radius: 20px 20px 20px 20px;
+}
+.inp  div{
+    width : 100% !important;
+}
+.btn{
+    border-radius: 0 20px 20px 0;
+}
+.text{
+    font-size: 18px;
+}
+.err{
+    display: flex;
+    justify-content: center;
+    color:red
+}
+.imageParent{
+    margin-top: 30px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+}
+.ava{
+    width: 50px;
+}
+.btnImage{
+    border-radius: 20px 0 0 20px;
+}
+.inpImgae{
+    width: 50px;
+    border-radius: 0 20px 20px 0;
+}
+
+.divid {
+    margin-top: 0;
+    background-color: white;
+    min-width: 60%;
+    width: 70%;
+}
+.mess{
+    z-index: 100000000 !important;
+}
+.textInfo{
+    text-align: center;
+}
+.btnInfo{
+    margin-top: 5px;
+    display: flex;
+    justify-content: center;
+}
+.zagr {
+    position: absolute;
+    top:300px;
+    width: 100%;
+    &__hed1 {
+      display: flex;
+      justify-content: center;
+    }
+  }
+
+@media screen and (max-width:600px) {
+    .parent{
+        width: 90%;
+    }
+    .parent1{
+        width: 90%;
+    }
+    .parent3{
+        width: 90%;
+    }
+    .text{
+        font-size: 14px;
+    }
+}

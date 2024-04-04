@@ -1,0 +1,16 @@
+.bc{
+    background-color: white;
+    width: 100%;
+     border-radius: 0 0 20px 20px;
+}
+.selec{
+    width: 100%;
+    border-radius: 20px 20px 0 0 !important;
+    background-color:#d9d9d9;
+}
+.selec > ant-select-selector{
+    border: none !important;
+}
+.btn{
+    margin-top: 10px;
+}

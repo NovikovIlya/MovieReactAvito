@@ -1,0 +1,197 @@
+.mt {
+  margin-top: -10px;
+}
+.Main {
+  color: white;
+  background-color: black;
+  min-height: 100vh;
+}
+.Main2 {
+  color: white;
+}
+.imag{
+  width: 300px;
+}
+.lin2Parent{
+  margin-top: 10px;
+}
+.zagr {
+  position: absolute;
+  top:300px;
+  width: 100%;
+  &__hed1 {
+    display: flex;
+    justify-content: center;
+  }
+}
+.link {
+  display: flex;
+  padding-top: 40px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+.container {
+  margin: 0 auto;
+  margin-top: 50px;
+  width: 1200px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  &__right {
+    flex: 1;
+    padding: 10px;
+    margin-left: 20px;
+    margin-top: -25px;
+  }
+}
+.container2 {
+  margin: 0 auto;
+  padding-top:150px;
+  // margin-top: 50px;
+  width: 1200px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.container2ss{
+  width: 70%;
+}
+.containerTop {
+  display: flex;
+  width: 70%;
+}
+.ParentItem {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+}
+.item {
+  width: 150px;
+  margin-top: 10px;
+}
+.itemRight {
+  flex: 1;
+}
+.itemRight2 {
+  height: 90%;
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-between;
+  padding: 20px;
+}
+
+.containerBottom {
+  width: 70%;
+  text-align: start;
+}
+.Bottom {
+  height: 100%;
+}
+.twoItemParent {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.twoItem {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  width: 70%;
+  justify-content: center;
+}
+.containerRating {
+  margin-top: 20px;
+}
+.containerTrailer {
+  display: flex;
+  justify-content: center;
+}
+.containerComment {
+  display: flex;
+  justify-content: center;
+  width: 70%;
+}
+.star {
+  margin-right: 5px;
+}
+.divid {
+  background-color: white;
+  min-width: 60%;
+  width: 70%;
+}
+.ratingMass {
+  width: 100%;
+}
+.plus {
+  position: relative;
+  top: -25px;
+  display: flex;
+  justify-content: end;
+  opacity: 0.5;
+}
+.plusE:hover {
+  scale: 1.2;
+}
+.plusE {
+  margin-right: 10px;
+}
+.lin2 {
+  position: relative;
+  z-index: 1000;
+  color: rgba(39, 97, 245, 0.8);
+  text-decoration: none;
+}
+.lin2:hover {
+  z-index: 10000;
+
+  color: white;
+}
+.container2Parent{
+  width: 1200px;
+}
+.lin2Btn{
+  z-index: 1000;
+  margin-bottom: 3px;
+}
+
+@media screen and (max-width: 600px) {
+  .imag{
+    width: 100%;
+  }
+  .plus {
+    width: 100%;
+  }
+  .container {
+    width: 100%;
+  }
+  .container2 {
+    width: 100%;
+  }
+  .containerTop {
+    display: block;
+  }
+  .twoItem {
+    display: block;
+  }
+  iframe {
+    width: 300px;
+  }
+  .containerRating {
+    width: 100%;
+  }
+  .containerRating {
+    text-align: center;
+  }
+  .itemRight2 {
+    justify-content: center;
+  }
+  .container {
+    &__right {
+      margin-top: 10px;
+    }
+  }
+  .container2{
+    padding-top: 40px;
+  }
+}

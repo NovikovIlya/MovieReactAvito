@@ -1,0 +1,87 @@
+body{
+  background-color: black;
+}
+.movie-app > .row {
+  overflow: hidden;
+  flex-wrap: wrap;
+}
+.rowChild {
+  width: auto;
+
+}
+.wh{
+  width: 70%;
+}
+.slick-next{
+  right: 30px !important;
+}
+
+.slick-prev{
+  left: 30px !important;
+  z-index: 1000;
+}
+
+.ant-btn-default:disabled{
+  background-color: rgb(255, 255, 255);
+}
+.ant-switch-inner{
+  border: 2px solid gray;
+}
+.ant-menu-submenu-title{
+  padding-left: 8px !important;
+}
+.ant-menu-item-only-child{
+  z-index: 1000;
+  padding-left: 8px !important;
+}
+.ant-select-selector{
+  border: none !important;
+}
+.ant-menu-submenu-arrow{
+  display: none;
+}
+
+.ant-col-16{
+  max-width: 100%;
+  flex:0
+}
+.mda1{
+  margin-bottom: 50px;
+}
+
+.ant-dropdown,.ant-select-dropdown{
+  z-index: 100000000 !important;
+}
+.side-by-side,.fullscreen,.preview,.separator {
+  display: none !important;
+}
+
+.ant-message,.ant-modal-wrap{
+  z-index: 100000000 !important;
+}
+
+.ant-pagination-options{
+  display: none !important;
+}
+.zz{
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center !important;
+  position: relative;
+}
+.toH{
+ overflow: hidden;
+ text-overflow: ellipsis;
+}
+.ant-menu-overflow-item::after{
+  display: none !important;
+}
+@media  screen and (max-width: 600px) {
+  .zz{
+    width: 90%;
+    margin: 0 auto;
+    margin-bottom: 20px;
+  }
+  
+}

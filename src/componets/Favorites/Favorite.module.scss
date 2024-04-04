@@ -1,0 +1,27 @@
+.container{
+    padding-top: 150px;
+}
+.head{
+    margin-left: 85px;
+}
+.img{
+    height: 300px;
+}
+.btnDesc{
+    border-radius: 20px 0 0 20px;
+}
+.btnPlus{
+    border-radius: 0 20px 20px 0;
+}
+.text{
+    height: 70px;
+}
+.zagr {
+    position: absolute;
+    top:300px;
+    width: 100%;
+    &__hed1 {
+      display: flex;
+      justify-content: center;
+    }
+  }

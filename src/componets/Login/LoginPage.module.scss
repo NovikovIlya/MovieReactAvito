@@ -1,0 +1,50 @@
+.menu{
+    display: flex;
+    justify-content: center;
+
+}
+.Main{
+    background-color: black;
+    height: 100vh;
+}
+.container{
+    margin: 0 auto;
+    width: 30%;
+    &__user{
+        display: flex;
+
+    }
+    &__btn{
+        display: flex;
+        justify-content: center;
+        margin-top: 50px;
+    }
+}
+.name{
+    margin-bottom: 90px;
+    margin-top: 20px;
+}
+
+.error{
+    color:red;
+}
+.render{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+.spin{
+    margin-top: 70px;
+}
+.spin2{
+    text-align: center;
+    margin-top: 110px;
+}
+.lin{
+    text-decoration: none;
+}
+@media screen and (max-width:600px) {
+    .container{
+        width: 60%;
+    }
+}

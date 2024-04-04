@@ -1,0 +1,102 @@
+.MainParent{
+    width: 100%;
+    margin-bottom: 40px;
+}
+.MainAll{
+    display: flex;
+}
+.Main{
+    color:black;
+    flex:1;
+}
+.container{
+    background-color: white;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    padding: 15px;
+}
+.container2{
+    background-color: rgb(161, 161, 161);
+    border-radius: 10px;
+    margin-bottom: 30px;
+    padding: 15px;
+}
+.parentBtn{
+    width: 100%;
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+.btn{
+    margin-top: 10px;
+    border-radius: 20px 20px 20px 20px;
+}
+.inp{
+    border-radius: 20px 0 0 20px;
+}
+.out{
+    margin-right: 5px;
+}
+.containerChilcd{
+    &__text{
+        padding-bottom: 10px;
+    }
+}
+.selec{
+    width: 100%;
+    border-radius: 20px 20px 0 0 !important;
+    background-color:#d9d9d9;
+}
+.selec > ant-select-selector{
+    border: none !important;
+}
+.date{
+    margin-top: 23px;
+    font-size: 10px;
+    color:gray;
+    text-align: right;
+}
+
+
+.MainTwo{
+    padding: 27px;
+    &__all{
+        margin-bottom: 20px;
+        &__desc{
+            font-size: 10px;
+        }
+    }
+    &__positive{
+        margin-bottom: 20px;
+        &__text{
+            color: rgb(9, 255, 9);
+        }
+        &__desc{
+            font-size: 10px;
+        }
+    }
+    &__negative{
+        margin-bottom: 20px;
+        &__text{
+            color: red;
+        }
+        &__desc{
+            font-size: 10px;
+        }
+    }
+}
+
+.childText{
+  
+    align-items: center;
+}
+.childText p{
+    
+    align-items: center;
+    margin-bottom: 0;
+    white-space: pre-wrap;
+
+
+}

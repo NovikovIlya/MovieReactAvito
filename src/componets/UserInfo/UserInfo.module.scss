@@ -1,0 +1,36 @@
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: end;
+   
+    &__username{
+        margin-right: 10px;
+        display: none;
+    }
+}
+.menu{
+    position: relative;
+    z-index: 10000000;
+    border-radius: 10px;
+    width: 70%;
+}
+
+.lin{
+    text-decoration: none;
+    position: relative;
+    z-index: 10000000;
+    display: flex;
+    width: 100%;
+}
+
+@media screen and (max-width:600px) {
+    .container{
+        justify-content: center;
+    }
+    .menu{
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+
+    }
+}

@@ -1,0 +1,70 @@
+.main{
+    top:0 !important;
+    position: fixed;
+    width: 100%;
+    background-color: black;
+    z-index: 10000;
+}
+.container{
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    padding-top: 25px;
+    align-items: center;
+}
+.container2{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    padding-top: 3px;
+    align-items: center;
+}
+.container3{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    padding-top: 3px;
+    align-items: center;
+    padding-bottom: 0;
+}
+.container3 .ant-divider{
+    margin-top: 0 !important;
+}
+.userInfo{
+    width: 175px;
+}
+.divi{
+    background-color: gray;
+    margin-bottom: 0;
+    margin-top: 0 !important;
+}
+
+.hiddenZ{
+    display: none;
+}
+.messa{
+    position: absolute;
+    top:22px;
+    right: 250px;
+}
+
+@media screen and (max-width: 600px) {
+    .container{
+        flex-wrap: wrap ;
+        justify-content:center;
+        &__inp{
+            width: 70%;
+        }
+    }
+    .search{
+        margin-top: 10px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+    .main{
+        position: relative;
+       
+    }
+    
+}

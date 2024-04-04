@@ -1,0 +1,24 @@
+.themeSwitch{
+    display: flex;
+    align-items: center;
+}
+.switch{
+    margin-left: 10px;
+}
+.lin{
+    text-decoration: none;
+}
+.imageStyle{
+    width: 150px;
+    height: 25px;
+    filter:contrast(0.0);
+}
+
+@media screen and (max-width:600px) {
+    .switch{
+        display: none;
+    }
+    .imageStyle{
+        margin-bottom: 10px;
+    }
+}
