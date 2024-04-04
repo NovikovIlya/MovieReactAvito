@@ -18,7 +18,7 @@ function LoginPage() {
     {
       label: (
         <Link className={styles.lin} to="/login" rel="noopener noreferrer">
-          Login
+          Войти
         </Link>
       ),
       key: 'mail',
@@ -27,7 +27,7 @@ function LoginPage() {
     {
       label: (
         <Link className={styles.lin} to="/auth">
-          Sign up
+          Зарегистрироваться
         </Link>
       ),
       icon: <DatabaseOutlined />,
@@ -134,7 +134,7 @@ function LoginPage() {
         <form className={styles.container} onSubmit={handleSubmit(onSubmit)}>
           <div className={styles.name}>
             <Controller
-              render={({ field }) => <AntdInput placeholder="Username" {...field} />}
+              render={({ field }) => <AntdInput placeholder="Имя пользователя" {...field} />}
               rules={{
                 required: 'Field cannot be empty',
                 minLength: { value: 4, message: 'Minimum 4 characters' },
@@ -162,7 +162,7 @@ function LoginPage() {
 
           <Controller
             render={({ field }) => (
-              <AntdInput disabled={dis} placeholder="Password" type="password" {...field} />
+              <AntdInput disabled={dis} placeholder="Пароль" type="password" {...field} />
             )}
             rules={{
               required: 'Field cannot be empty',
@@ -189,12 +189,12 @@ function LoginPage() {
           />
           <div className={styles.container__btn}>
             <AndtdButton type="primary" htmlType="submit">
-              Send
+              Отправить
             </AndtdButton>
           </div>
           <div className={styles.container__btn}>
             <AndtdButton type="primary" htmlType="button" onClick={onSubmit1}>
-              Enter test user
+              Зайти под тестовым пользователем
             </AndtdButton>
           </div>
         </form>

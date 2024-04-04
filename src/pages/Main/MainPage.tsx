@@ -3,7 +3,7 @@ import { ConfigProvider, Empty, Pagination, Select, Spin, Popover } from 'antd';
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuthApiQuery, useFetchMoviesPopularQuery } from '../../store/MovieApi';
-import styles from './New.module.scss';
+import styles from './MainPage.module.scss';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { setMyName, setNumReduce } from '../../store/sliceMovie';
 
@@ -12,13 +12,14 @@ const New = () => {
   const navigate = useNavigate();
 
   const [imgSrc, setImageSrc] = useState(true);
-  const [genre, setGenre] = useState('');
-  const [sortHow, setSortHow] = useState('desc');
-  const [sort, setSort] = useState('date_added');
+  const [genre, setGenre] = useState('Россия');
+  const [sortHow, setSortHow] = useState('12-18');
+  const [sort, setSort] = useState('2020-2024');
   const num = useAppSelector((state) => state.sliceMovie.num);
   const { data, refetch, isFetching, error,isLoading:isLoadingAuth } = useAuthApiQuery('');
   const { data: dataPopular, isLoading,isFetching:isFetch } = useFetchMoviesPopularQuery(
-    `sort_by=${sort}&order_by=${sortHow}&limit=8&page=${num}&genre=${genre}`,
+    `page=${num}&year=${sort}&countries.name=${genre}&ageRating=${sortHow}&limit=10`
+    // `sort_by=${sort}&order_by=${sortHow}&limit=8&page=${num}&genre=${genre}`,
   );
   const placeholderImage =
     'https://www.zidart.rs/build/images/background/no-results-bg.2d2c6ee3.png';
@@ -57,10 +58,11 @@ const New = () => {
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
   };
   const onClickDrop = (value) => {
-    setGenre(value);
+    
+    setSort(value);
   };
   const onClickDropTwo = (value) => {
-    setSort(value);
+    setGenre(value);
   };
   const onClickDropThree = (value) => {
     setSortHow(value);
@@ -70,17 +72,17 @@ const New = () => {
     (option?.label ?? '').toLowerCase().includes(input.toLowerCase());
   const content = (
     <div>
-      <p>Select a genre</p>
+      <p>Выберите год</p>
     </div>
   );
   const contentSort = (
     <div>
-      <p>Select a sort</p>
+      <p>Выберите страну</p>
     </div>
   );
   const contentHowSort = (
     <div>
-      <p>How to sort</p>
+      <p>Выберите возрастной рейтинг</p>
     </div>
   );
 
@@ -88,53 +90,41 @@ const New = () => {
     <>
       {isFetch &&(
         <div className={styles.zagr2}>
-        <Spin tip="Loading" size="large">
+        <Spin tip="Загрузка" size="large">
           <div className="content" />
         </Spin>
       </div>
       )}
       {isLoading ?  (
         <div className={styles.zagr}>
-          {/* <Spin tip="Loading" size="large">
-            <div className="content" />
-          </Spin> */}
         </div>
       ) : (
-        <Spin spinning={isLoadingAuth} tip="Loading...">
+        <Spin spinning={isLoadingAuth} tip="Загрузка...">
           <div className={styles.parentDrop}>
             <Popover content={content} title="">
               <Select
                 showSearch
                 onSearch={onSearch}
                 filterOption={filterOption}
-                defaultValue="All"
+                defaultValue="2020-2024"
                 className={styles.drop}
                 style={{ width: 120 }}
                 onChange={onClickDrop}
                 options={[
-                  { value: '', label: 'All' },
-                  { value: 'Action', label: 'Action' },
-                  { value: 'Adventure', label: 'Adventure' },
-                  { value: 'Animation', label: 'Animation' },
-                  { value: 'Biography', label: 'Biography' },
-                  { value: 'Comedy', label: 'Comedy' },
-                  { value: 'Crime', label: 'Crime' },
-                  { value: 'Documentary', label: 'Documentary' },
-                  { value: 'Drama', label: 'Drama' },
-                  { value: 'Family', label: 'Family' },
-                  { value: 'Fantasy', label: 'Fantasy' },
-                  { value: 'Film-Noir', label: 'Film-Noir' },
-                  { value: 'History', label: 'History' },
-                  { value: 'Horror', label: 'Horror' },
-                  { value: 'Music', label: 'Music' },
-                  { value: 'Musical', label: 'Musical' },
-                  { value: 'Mystery', label: 'Mystery' },
-                  { value: 'Sci-Fi', label: 'Sci-Fi' },
-                  { value: 'Romance', label: 'Romance' },
-                  { value: 'Sport', label: 'Sport' },
-                  { value: 'Thriller', label: 'Thriller' },
-                  { value: 'War', label: 'War' },
-                  { value: 'Western', label: 'Western' },
+                  { value: '2020-2024', label: '2020-2024' },
+                  { value: '2010-2019', label: '2010-2019' },
+                  { value: '2000-2009', label: '2000-2009' },
+                  { value: '1990-1999', label: '1990-1999' },
+                  { value: '1980-1989', label: '1980-1989' },
+                  { value: '1970-1979', label: '1970-1979' },
+                  { value: '1960-1969', label: '1960-1969' },
+                  { value: '1950-1959', label: '1950-1959' },
+                  { value: '1940-1949', label: '1940-1949' },
+                  { value: '1930-1939', label: '1930-1939' },
+                  { value: '1920-1929', label: '1920-1929' },
+                  { value: '1910-1919', label: '1910-1919' },
+                  { value: '1900-1909', label: '1900-1909' },
+                 
                 ]}
               />
             </Popover>
@@ -143,13 +133,13 @@ const New = () => {
                 showSearch
                 onSearch={onSearch}
                 filterOption={filterOption}
-                defaultValue="Date added"
+                defaultValue="Россия"
                 className={styles.drop2}
                 style={{ width: 120 }}
                 onChange={onClickDropTwo}
                 options={[
-                  { value: 'title', label: 'Title' },
-                  { value: 'date_added', label: 'Date added' },
+                  { value: 'Россия', label: 'Россия' },
+                  { value: 'США', label: 'США' },
                 ]}
               />
             </Popover>
@@ -158,29 +148,29 @@ const New = () => {
                 showSearch
                 onSearch={onSearch}
                 filterOption={filterOption}
-                defaultValue="desc"
+                defaultValue="12-18"
                 className={styles.drop2}
                 style={{ width: 120 }}
                 onChange={onClickDropThree}
                 options={[
-                  { value: 'desc', label: 'Descending' },
-                  { value: 'asc', label: 'Ascending' },
+                  { value: '0-12', label: '0-12' },
+                  { value: '12-18', label: '12-18' },
                 ]}
               />
             </Popover>
           </div>
           <div className={styles.parent}>
-            {dataPopular?.data?.movies?.map((item) => {
+            {dataPopular?.docs?.map((item) => {
               return (
-                <div key={item.imdb_code} className="mda1 zz rowChild f-flex justify-content-start">
-                  <div className={styles.text}><div className='toH'>{item.title}</div></div>
-                  {item.large_cover_image ? (
-                    <Link to={`/${item.imdb_code}`}>
+                <div key={item.id} className="mda1 zz rowChild f-flex justify-content-start">
+                  <div className={styles.text}><div className='toH'>{item.name}</div></div>
+                  {item.poster.url ? (
+                    <Link to={`/${item.id}`}>
                       <img
                         className={styles.img}
                         onError={onErr}
                         key={item.imdb_code}
-                        src={imgSrc ? item.large_cover_image : placeholderImage}
+                        src={item.poster.url}
                         alt="no"
                       />
                     </Link>
@@ -191,18 +181,9 @@ const New = () => {
               );
             })}
           </div>
-          <ConfigProvider
-            theme={{
-              components: {
-                Pagination: {
-                  itemActiveColorDisabled: 'rgb(128,128,128)',
-                },
-              },
-            }}>
-            <div className={styles.pag}>
-              <Pagination onChange={onChange} defaultCurrent={num} total={50000} />
+          <div className={styles.pag}>
+              <Pagination onChange={onChange} defaultCurrent={num} total={dataPopular.total} />
             </div>
-          </ConfigProvider>{' '}
         </Spin>
       )}
     </>

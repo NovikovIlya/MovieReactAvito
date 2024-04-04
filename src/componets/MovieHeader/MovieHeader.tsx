@@ -9,9 +9,7 @@ import { useEffect } from 'react';
 import { CommentOutlined } from '@ant-design/icons';
 import {
   useAuthApiQuery,
-  useChatAllMutation,
-  useGetEmailMutation,
-  useGetMessageMutation,
+
 } from '../../store/MovieApi';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { setEmailAll } from '../../store/sliceMovie';
@@ -25,76 +23,23 @@ const MovieHeader = () => {
   const [hidd, setHidd] = useState(false);
   const location = useLocation();
   const { data: dataApi } = useAuthApiQuery('');
-  const [ChatAll, { data: dataChat }] = useChatAllMutation();
+
   const [cccvalue, setCccValue] = useState<ChatAllResponse[] | string>('');
-  const [getUserApiSetTwo, { data: dataGetEmail }] = useGetEmailMutation({});
+
   const [mess, setMess] = useState(false);
-  const [getMessage, { data: dataMessage }] = useGetMessageMutation();
+
   const [someFalse, setSomefalse] = useState(false);
   const placeholder = 'input text';
 
   //hooks
-  useEffect(() => {
-    getMessage({ username: myName });
-  }, [getMessage, myName]);
 
-  useEffect(() => {
-    if (dataMessage) {
-      if (pathname.includes('mail') || pathname.includes('onemail')) {
-        setSomefalse(false);
-      } else {
-        var some = dataMessage.some((item) => item.read === false);
-        setSomefalse(some);
-      }
-    }
-  }, [dataMessage, pathname]);
 
-  useEffect(() => {
-    if (dataApi) {
-      if (dataApi.username) {
-        const data = {
-          username: dataApi.username,
-          time: new Date().toLocaleTimeString(),
-        };
-        ChatAll(data);
-      }
-    }
-  }, [dataApi]);
 
-  useEffect(() => {
-    if (dataApi) {
-      if (dataApi.username && dataApi.username !== undefined) {
-        const interval = setInterval(() => {
-          getUserApiSetTwo({ username: dataApi.username });
-          const data = {
-            username: dataApi.username,
-            time: new Date().toLocaleTimeString(),
-          };
-          ChatAll(data);
-        }, 600000);
-        return () => clearInterval(interval);
-      }
-    }
-  }, [dataApi]);
 
-  useEffect(() => {
-    if (dataChat) {
-      const ccc = dataChat.filter((element) => element !== null);
-      dispatch(setEmailAll(ccc));
 
-      setCccValue(ccc);
-    }
-  }, [dataChat]);
 
-  useEffect(() => {
-    if (dataGetEmail !== undefined) {
-      if (dataGetEmail < cccvalue.length) {
-        setMess(true);
-      } else {
-        setMess(false);
-      }
-    }
-  }, [dataGetEmail, cccvalue]);
+
+
 
   useEffect(() => {
     if (location.pathname === '/login' || location.pathname === '/auth') {
@@ -117,9 +62,9 @@ const MovieHeader = () => {
       {
         <div className={styles.main}>
           <div>
-            {mess && (
+            {/* {mess && (
               <div>
-                {' '}
+              
                 <FloatButton
                   icon={<CommentOutlined />}
                   description="New message in chat"
@@ -140,7 +85,7 @@ const MovieHeader = () => {
                   onClick={onClickMail}
                 />
               </div>
-            )}
+            )} */}
           </div>
           <div className={styles.container}>
             <div className={styles.title}>

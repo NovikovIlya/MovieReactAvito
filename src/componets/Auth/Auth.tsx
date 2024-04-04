@@ -3,7 +3,7 @@ import { useForm, Controller } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import { ErrorMessage } from '@hookform/error-message';
 import _ from 'lodash';
-import styles from '../Login/LoginPage.module.scss';
+import styles from '../../pages/Login/LoginPage.module.scss';
 import { Input as AntdInput, Button as AndtdButton, message, Spin } from 'antd';
 import { LoginOutlined, DatabaseOutlined } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
@@ -90,7 +90,7 @@ function Auth() {
       <form className={styles.container} onSubmit={handleSubmit(onSubmit)}>
         <div className={styles.name}>
           <Controller
-            render={({ field }) => <AntdInput placeholder="Username" {...field} />}
+            render={({ field }) => <AntdInput placeholder="Имя пользователя" {...field} />}
             rules={{
               required: 'Field cannot be empty',
               minLength: { value: 4, message: 'Minimum 4 characters' },
@@ -115,7 +115,7 @@ function Auth() {
         </div>
 
         <Controller
-          render={({ field }) => <AntdInput placeholder="Password" type="password" {...field} />}
+          render={({ field }) => <AntdInput placeholder="Пароль" type="password" {...field} />}
           rules={{
             required: 'Field cannot be empty',
             minLength: { value: 4, message: 'Minimum 4 characters' },
@@ -140,7 +140,7 @@ function Auth() {
         />
         <div className={styles.container__btn}>
           <AndtdButton type="primary" htmlType="submit">
-            Send
+            Отправить
           </AndtdButton>
         </div>
       </form>

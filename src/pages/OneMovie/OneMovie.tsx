@@ -1,4 +1,4 @@
-import { CharacherRight } from '../characterRight/CharacherRight';
+import { CharacherRight } from '../../componets/characterRight/CharacherRight';
 import { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
 import {
@@ -6,18 +6,18 @@ import {
   useFetchMoviesOneQuery,
   useTorrentFetchQuery,
 } from '../../store/MovieApi';
-import styles from './MovieCharacteristics.module.scss';
-import Trailer from '../Trailer/Trailer';
-import Comment from '../Comment/Comment';
+import styles from './OneMovie.module.scss';
+import Trailer from '../../componets/Trailer/Trailer';
+import Comment from '../../componets/Comment/Comment';
 import { Divider, Popover, Spin, Breadcrumb, ConfigProvider, Button, Modal, Result } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import { StarFilled, PlusOutlined, CheckOutlined } from '@ant-design/icons';
 import cn from 'classnames';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import Rating from '../Rating/Rating';
-import Similar from '../Similar/Similar';
+import Rating from '../../componets/Rating/Rating';
+import Similar from '../../componets/Similar/Similar';
 import { addFavorites } from '../../store/sliceMovie';
-import ImageComp from '../ImagesComp/ImagesComp';
+import ImageComp from '../../componets/ImagesComp/ImagesComp';
 import { Empty } from 'antd';
 
 const MovieCharacteristics = () => {
@@ -35,20 +35,21 @@ const MovieCharacteristics = () => {
   const [tor, setTor] = useState([]);
   const [gengreText, setGenreText] = useState<string>('');
   const navigate = useNavigate();
-  const { title, year, id } = useParams();
-  const arg = {
-    title: title,
-    year: year,
-    id: id,
-  };
+  const {  year, id } = useParams();
+  // const arg = {
+  //   title: title,
+  //   year: year,
+  //   id: id,
+  // };
   const { data: dataTorrent, isLoading: isLoadTorr } = useTorrentFetchQuery(id);
   const { data: dataApi, error, isFetching, isLoading: isLoadApi } = useAuthApiQuery('');
-  const { data, isLoading } = useFetchMoviesOneQuery(arg);
+  const { data, isLoading } = useFetchMoviesOneQuery(id);
   const { data: dataPoster, isLoading: isLoadPoster } = useTorrentFetchQuery(id);
   const darkMode = useAppSelector((state) => state.sliceMovie.darkMode);
   const darkModeTheme = cn({
     [styles.Main]: !darkMode,
   });
+  const Title = data?.name 
 
   //useeffect -------------
   //логика с избранными
@@ -177,7 +178,7 @@ const MovieCharacteristics = () => {
                             ),
                           },
                           {
-                            title: data.Title,
+                            title: data?.name,
                           },
                         ]}
                       />
@@ -192,13 +193,13 @@ const MovieCharacteristics = () => {
                           className={styles.imag}
                           onError={onErr}
                           src={
-                            data.Poster
-                              ? data.Poster
+                            data
+                              ? data.poster.url
                               : 'https://t4.ftcdn.net/jpg/04/72/65/73/360_F_472657366_6kV9ztFQ3OkIuBCkjjL8qPmqnuagktXU.jpg'
                           }
                           alt="no"
                         />
-                        <div className={styles.lin2Parent}>
+                        {/* <div className={styles.lin2Parent}>
                           <Button className={styles.lin2Btn} type="primary" onClick={showModal}>
                             Download
                           </Button>
@@ -225,7 +226,7 @@ const MovieCharacteristics = () => {
                               </>
                             )}
                           </Modal>
-                        </div>
+                        </div> */}
                       </div>
 
                       <div className={styles.plus}>
@@ -247,41 +248,31 @@ const MovieCharacteristics = () => {
                         </Popover>
                       </div>
                     </div>
-                    <CharacherRight arg={arg} />
+                    <CharacherRight data={data} />
                   </div>
 
                   <Divider className={styles.divid} />
 
-                  <div className={styles.containerBottom}>
+                  {/* <div className={styles.containerBottom}>
                     <div className={styles.Bottom}>
                       <div className={styles.itemRight}>{data.Plot}</div>
                     </div>
                   </div>
 
-                  <Divider className={styles.divid} />
+                  <Divider className={styles.divid} /> */}
 
                   <div className={styles.twoItemParent}>
                     <div className={styles.twoItem}>
                       <div className={styles.containerTrailer}>
                         <div>
-                          <Trailer id={arg.id} title={data.Title} year={data.Year} />
+                          {/* <Trailer id={arg.id} title={data.Title} year={data.Year} /> */}
                         </div>
                       </div>
                       <div className={styles.containerRating}>
                         <div className={styles.Bottom}>
                           <div className={styles.itemRight2}>
-                            {data.Ratings
-                              ? data.Ratings.map((item) => {
-                                  return (
-                                    <div key={item.Source} className={styles.ratingMass}>
-                                      <div>
-                                        <StarFilled className={styles.star} />
-                                        {item.Source}:
-                                      </div>
-                                      <div>{item.Value}</div>
-                                    </div>
-                                  );
-                                })
+                            Рейтинг КП: {data
+                              ? data.rating.kp
                               : ''}
                           </div>
                         </div>
@@ -291,15 +282,15 @@ const MovieCharacteristics = () => {
 
                   <Rating id={id} />
 
-                  <div className="row wh">
+                  {/* <div className="row wh">
                     <ImageComp id={id} />
-                  </div>
+                  </div> */}
 
-                  <Divider className={styles.divid} />
+                  {/* <Divider className={styles.divid} /> */}
 
-                  <div className="row wh">
+                  {/* <div className="row wh">
                     <Similar gengreText={gengreText} />
-                  </div>
+                  </div> */}
 
                   <Divider className={styles.divid} />
 

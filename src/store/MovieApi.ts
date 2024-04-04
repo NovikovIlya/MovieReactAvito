@@ -26,17 +26,23 @@ import {
 
 export const MovieApi = createApi({
   reducerPath: 'apiMovies',
-  baseQuery: fetchBaseQuery({ baseUrl: 'https://www.omdbapi.com' }),
+  baseQuery: fetchBaseQuery({ baseUrl: 'https://api.kinopoisk.dev/v1.4/movie',
+    prepareHeaders: (headers) => {
+      // headers.set('X-API-KEY', '1EDBRR5-VBQ4W08-QBDF41V-KZSDBV8');
+      headers.set('X-API-KEY', 'WF76VQQ-HQB4P5G-JFJH8DF-CRKDP1M');
+      return headers;
+    },
+  }),
   tagTypes: ['Fetch'],
   endpoints: (builder) => ({
-    fetchMovies: builder.query<MovieArray, string>({
+    fetchMovies: builder.query<any, string>({
       query: (search) => ({
-        url: `?apikey=55ce87c0&s=${search}`,
+        url: `/search?query=${search}`,
       }),
     }),
-    fetchMoviesOne: builder.query<MovieApiOneType, argType>({
-      query: (arg) => ({
-        url: `?apikey=55ce87c0&i=${arg.id}`,
+    fetchMoviesOne: builder.query<any, any>({
+      query: (id) => ({
+        url: `/${id}`,
       }),
     }),
   }),
@@ -96,12 +102,18 @@ export const fetchCommentApi = createApi({
 
 export const torrentApi = createApi({
   reducerPath: 'torrent',
-  baseQuery: fetchBaseQuery({ baseUrl: 'https://yts.mx/api/v2/' }),
+  baseQuery: fetchBaseQuery({ baseUrl: 'https://api.kinopoisk.dev/v1.4',
+    prepareHeaders: (headers) => {
+      headers.set('X-API-KEY', 'WF76VQQ-HQB4P5G-JFJH8DF-CRKDP1M');
+      return headers;
+    },
+   }),
   tagTypes: ['torrent'],
+  // AVITO
   endpoints: (builder) => ({
     torrentFetch: builder.query<any, string>({
-      query: (imdb) => ({
-        url: `list_movies.json?query_term=${imdb}`,
+      query: (id) => ({
+        url: `movie/${id}`,
       }),
       providesTags:['torrent']
     }),
@@ -111,9 +123,10 @@ export const torrentApi = createApi({
       }),
       providesTags:['torrent']
     }),
-    fetchMoviesPopular: builder.query<RootYts, string>({
+    // AVITO
+    fetchMoviesPopular: builder.query<any, any>({
       query: (search) => ({
-        url: `list_movies.json?${search}`,
+        url: `movie?${search}`,
       }),
     }),
   }),
@@ -174,36 +187,36 @@ export const info = createApi({
       }),
       invalidatesTags: ['info']
     }),
-    ChatAll: builder.mutation<ChatAllResponse[], ChatAllRequest>({
-      query: (add) => ({
-        method: 'POST',
-        url: 'chatall',
-        body: add,
-      }),
-      invalidatesTags: ['info']
-    }),
-    emailRead: builder.mutation<any, EmailReadRequest>({
-      query: (add) => ({
-        method: 'POST',
-        url: 'auth/emailReading',
-        body: add,
-      }),
-      invalidatesTags: ['info']
-    }),
-    getEmail: builder.mutation<GetEmailResponse, GetEmailRequest>({
-      query: (add) => ({
-        method: 'POST',
-        url: 'auth/getemail',
-        body: add,
-      }),
-      invalidatesTags: ['info']
-    }),
-    getUsers: builder.query<GetUsersResponse[], string>({
-      query: () => ({
-        url: 'auth/users',
-      }),
-      providesTags: ['info']
-    }),
+    // ChatAll: builder.mutation<ChatAllResponse[], ChatAllRequest>({
+    //   query: (add) => ({
+    //     method: 'POST',
+    //     url: 'chatall',
+    //     body: add,
+    //   }),
+    //   invalidatesTags: ['info']
+    // }),
+    // emailRead: builder.mutation<any, EmailReadRequest>({
+    //   query: (add) => ({
+    //     method: 'POST',
+    //     url: 'auth/emailReading',
+    //     body: add,
+    //   }),
+    //   invalidatesTags: ['info']
+    // }),
+    // getEmail: builder.mutation<GetEmailResponse, GetEmailRequest>({
+    //   query: (add) => ({
+    //     method: 'POST',
+    //     url: 'auth/getemail',
+    //     body: add,
+    //   }),
+    //   invalidatesTags: ['info']
+    // }),
+    // getUsers: builder.query<GetUsersResponse[], string>({
+    //   query: () => ({
+    //     url: 'auth/users',
+    //   }),
+    //   providesTags: ['info']
+    // }),
     sendMessage: builder.mutation<SendMessageRequest[], SendMessageRequest>({
       query: (add) => ({
         method: 'POST',
@@ -212,30 +225,30 @@ export const info = createApi({
       }),
       invalidatesTags: ['info']
     }),
-    updateMessage: builder.mutation<SendMessageRequest[], UpdateMessageRequest>({
-      query: (add) => ({
-        method: 'PUT',
-        url: 'auth/updatemessage',
-        body: add,
-      }),
-      invalidatesTags: ['info']
-    }),
-    getMessage: builder.mutation<SendMessageRequest[], GetEmailRequest>({
-      query: (add) => ({
-        method: 'POST',
-        url: 'auth/getmessage',
-        body: add,
-      }),
-      invalidatesTags: ['info']
-    }),
-    deleteMessage: builder.mutation<SendMessageRequest[], UpdateMessageRequest>({
-      query: (add) => ({
-        method: 'DELETE',
-        url: 'auth/deletemessage',
-        body: add,
-      }),
-      invalidatesTags: ['info']
-    }),
+    // updateMessage: builder.mutation<SendMessageRequest[], UpdateMessageRequest>({
+    //   query: (add) => ({
+    //     method: 'PUT',
+    //     url: 'auth/updatemessage',
+    //     body: add,
+    //   }),
+    //   invalidatesTags: ['info']
+    // }),
+    // getMessage: builder.mutation<SendMessageRequest[], GetEmailRequest>({
+    //   query: (add) => ({
+    //     method: 'POST',
+    //     url: 'auth/getmessage',
+    //     body: add,
+    //   }),
+    //   invalidatesTags: ['info']
+    // }),
+    // deleteMessage: builder.mutation<SendMessageRequest[], UpdateMessageRequest>({
+    //   query: (add) => ({
+    //     method: 'DELETE',
+    //     url: 'auth/deletemessage',
+    //     body: add,
+    //   }),
+    //   invalidatesTags: ['info']
+    // }),
   }),
 });
 
@@ -297,14 +310,14 @@ export const {
   useRepassApiSetMutation,
   useRenameApiSetMutation,
   useLoginApiSetMutation,
-  useChatAllMutation,
-  useEmailReadMutation,
-  useGetEmailMutation,
-  useGetUsersQuery,
+  // useChatAllMutation,
+  // useEmailReadMutation,
+  // useGetEmailMutation,
+  // useGetUsersQuery,
   useSendMessageMutation,
-  useUpdateMessageMutation,
-  useGetMessageMutation,
-  useDeleteMessageMutation
+  // useUpdateMessageMutation,
+  // useGetMessageMutation,
+  // useDeleteMessageMutation
 } = info;
 
 export const { useInfoApiSetTwoQuery,useGetUserApiSetTwoMutation } = infoTag;

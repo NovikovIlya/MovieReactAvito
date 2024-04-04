@@ -38,10 +38,11 @@ const Search: React.FC<SearchProps> = (props) => {
 
   useEffect(() => {
     if (data) {
-      if (data.Search) {
-        const searchData = data.Search.map((item) => {
-          let { Title, Year, Poster } = item;
-          return { ...item, value: `${Title}, ${Year}` };
+      if (data.docs.length > 0) {
+        //@ts-ignore
+        const searchData = data.docs.map((item) => {
+          let { name, year,  } = item;
+          return { ...item, value: `${name}, ${year}` };
         });
         setDataMass(searchData);
       }
@@ -132,11 +133,14 @@ const Search: React.FC<SearchProps> = (props) => {
   //functions
   const onSelect = (data2: string) => {
     const data3 = data2.split(',')[0];
-    const es = data?.Search?.find((item) => {
-      return item.Title === data3;
+    const data4 = data2.split(',')[1].trim()
+    const es = data?.docs?.find((item) => {
+      console.log(data4,item.year)
+      console.log(data3,item.name)
+      return item.name === data3 && String(item.year) === String(data4)
     });
     if (es) {
-      navigate(`/${es.imdbID}`);
+      navigate(`/${es.id}`);
     } else {
       navigate('/not');
     }
@@ -166,7 +170,7 @@ const Search: React.FC<SearchProps> = (props) => {
           onSelect={onSelect}
           style={{ width: 200 }}
           options={dataMass}
-          placeholder="Search"
+          placeholder="Искать..."
           filterOption={(inputValue, option) =>
             option!.value.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1
           }

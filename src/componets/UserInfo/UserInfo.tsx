@@ -55,27 +55,7 @@ const UserInfo = () => {
       '3',
       <StarOutlined />,
     ),
-    getItem(
-      <Link className={styles.lin} to={`/chat?name=${dataApi?.username}&room=main`}>
-        Chat
-      </Link>,
-      '7',
-      <WechatOutlined />,
-    ),
-    getItem(
-      <Link className={styles.lin} to="/mail">
-        Mail
-      </Link>,
-      '8',
-      <MailOutlined />,
-    ),
-    getItem(
-      <Link className={styles.lin} to={`/tableuser`}>
-        Users
-      </Link>,
-      '11',
-      <UsergroupAddOutlined />,
-    ),
+
     getItem(<div onClick={exitFnc}>Exit</div>, '6', <LogoutOutlined />),
     ,
   ];
@@ -107,7 +87,7 @@ const UserInfo = () => {
         <Button>
           <Space>
             <MenuOutlined />
-            Menu
+            Меню
             <DownOutlined />
           </Space>
         </Button>
