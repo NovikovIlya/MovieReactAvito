@@ -15,6 +15,7 @@
 - react-hook-form
 - swiper
 - axios
+- usehooks-ts
 
 ## Backend
 Для авторизации и логики с "избранным" используется бэк https://github.com/NovikovIlya/MovieReactBackend
