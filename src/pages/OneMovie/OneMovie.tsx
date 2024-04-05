@@ -38,7 +38,6 @@ const MovieCharacteristics = () => {
   );
   const navigate = useNavigate();
   const { id } = useParams();
-  const { data: dataTorrent, isLoading: isLoadTorr } = useTorrentFetchQuery(id);
   const { data: dataApi, error, isLoading: isLoadApi } = useAuthApiQuery("");
   const { data, isLoading } = useFetchMoviesOneQuery(id);
   const { pathname } = useLocation();
@@ -91,9 +90,6 @@ const MovieCharacteristics = () => {
 
   //скролл вверх
   useEffect(() => {
-    // if (!isLoadTorr && !isLoading && window.scrollY > 0) {
-    //   window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-    // }
     if (!isMounted && isAsyncComplete) {
       window.scrollTo(0, 0);
       setIsMounted(true);

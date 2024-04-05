@@ -46,7 +46,7 @@ export type MovieApiOneType = {
   Response: string
   value?: string;
 }
-export type Rating = {
+export type Ratings = {
   Source: string
   Value: string
 }
@@ -86,7 +86,7 @@ export type TrailerApi = {
   status?: string,
 }
 
-export type Trailer = {
+export type Trailers = {
   id: string
   youtube_video_id: string
   youtube_channel_id: string
@@ -163,68 +163,14 @@ export type ratingType = {
   rating: number,
 }
 
-export interface RootYts {
-  status: string
-  status_message: string
-  data: DataYts
-  "@meta": any,
-}
-
-
-export type  DataYts = {
-  movie_count: number
-  limit: number
-  page_number: number
-  movies: MovieYts[]
-}
 
 
 
-export type MovieYts = {
-  id: number
-  url: string
-  imdb_code: string
-  title: string
-  title_english: string
-  title_long: string
-  slug: string
-  year: number
-  rating: number
-  runtime: number
-  genres: string[]
-  summary: string
-  description_full: string
-  synopsis: string
-  yt_trailer_code: string
-  language: string
-  mpa_rating: string
-  background_image: string
-  background_image_original: string
-  small_cover_image: string
-  medium_cover_image: string
-  large_cover_image: string
-  state: string
-  torrents: Torrent[]
-  date_uploaded: string
-  date_uploaded_unix: number
-}
 
-export type Torrent = {
-  url: string
-  hash: string
-  quality: string
-  type: string
-  is_repack: string
-  video_codec: string
-  bit_depth: string
-  audio_channels: string
-  seeds: number
-  peers: number
-  size: string
-  size_bytes: number
-  date_uploaded: string
-  date_uploaded_unix: number
-}
+
+
+
+
 
 export type FieldType = {
   username?: string;
@@ -241,33 +187,7 @@ export type DataType = {
   imdb?: string;
 };
 
-export type ChatAllRequest={
-  username: string;
-  time: string
-}
 
-export type ChatAllResponse={
-  _id: string
-  sender: string
-  text: string
-  socketId: string
-  room: string
-  date: string
-  time: string
-  __v: number
-}
-
-export type EmailReadRequest={
-  username: string;
-  email: number
-}
-
-
-export type GetEmailRequest={
-  username: string;
-}
-
-export type GetEmailResponse = number;
 
 export type GetUsersResponse = {
   _id: string
@@ -342,3 +262,259 @@ export type UpdateMessageRequest = {
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+export type movieAll ={
+  docs:oneMovieType[],
+  error?:any,
+}
+////////////
+export interface oneMovieType {
+  error?:any,
+  status: string
+  externalId: ExternalId
+  rating: Rating
+  votes: Votes
+  backdrop: Backdrop
+  images: Images
+  productionCompanies: ProductionCompany[]
+  spokenLanguages: SpokenLanguage[]
+  id: number
+  type: string
+  name: string
+  description: string
+  distributors: Distributors
+  premiere: Premiere
+  slogan: string
+  year: number
+  poster: Poster
+  facts: Fact[]
+  genres: Genre[]
+  countries: Country[]
+  seasonsInfo: SeasonsInfo[]
+  persons: Person[]
+  lists: string[]
+  typeNumber: number
+  alternativeName: string
+  enName: string
+  names: Name[]
+  budget: Budget
+  color: string
+  movieLength: any
+  networks: any
+  shortDescription: string
+  subType: string
+  fees: Fees
+  updatedAt: string
+  ratingMpaa: any
+  technology: Technology
+  ticketsOnSale: boolean
+  similarMovies: SimilarMovy[]
+  sequelsAndPrequels: SequelsAndPrequel[]
+  ageRating: number
+  logo: Logo
+  watchability: Watchability
+  imagesInfo: ImagesInfo
+  releaseYears: ReleaseYear[]
+  top10: any
+  top250: number
+  deletedAt: any
+  isSeries: boolean
+  seriesLength: any
+  totalSeriesLength: number
+  videos: Videos
+}
+
+export interface ExternalId {
+  imdb: string
+  tmdb: number
+  kpHD: string
+}
+
+export interface Rating {
+  kp: number
+  imdb: number
+  filmCritics: number
+  russianFilmCritics: number
+  await: any
+}
+
+export interface Votes {
+  kp: number
+  imdb: number
+  filmCritics: number
+  russianFilmCritics: number
+  await: number
+}
+
+export interface Backdrop {
+  url: string
+  previewUrl: string
+}
+
+export interface Images {
+  postersCount: number
+  backdropsCount: number
+  framesCount: number
+}
+
+export interface ProductionCompany {
+  name: string
+  url: string
+  previewUrl: string
+}
+
+export interface SpokenLanguage {
+  name: string
+  nameEn: string
+}
+
+export interface Distributors {
+  distributor: any
+  distributorRelease: string
+}
+
+export interface Premiere {
+  world: string
+  dvd: string
+}
+
+export interface Poster {
+  url: string
+  previewUrl: string
+}
+
+export interface Fact {
+  value: string
+  type: string
+  spoiler: boolean
+}
+
+export interface Genre {
+  name: string
+}
+
+export interface Country {
+  name: string
+}
+
+export interface SeasonsInfo {
+  number: number
+  episodesCount: number
+}
+
+export interface Person {
+  id: number
+  photo: string
+  name: string
+  enName: string
+  description?: string
+  profession: string
+  enProfession: string
+}
+
+export interface Name {
+  name: string
+  language?: string
+  type: any
+}
+
+export interface Budget {}
+
+export interface Fees {
+  world: World
+  russia: Russia
+  usa: Usa
+}
+
+export interface World {}
+
+export interface Russia {}
+
+export interface Usa {}
+
+export interface Technology {
+  hasImax: boolean
+  has3D: boolean
+}
+
+export interface SimilarMovy {
+  id: number
+  name: string
+  enName: any
+  alternativeName: string
+  type: string
+  poster: Poster2
+}
+
+export interface Poster2 {
+  url: string
+  previewUrl: string
+}
+
+export interface SequelsAndPrequel {
+  id: number
+  name: string
+  alternativeName: string
+  enName: any
+  type: string
+  poster: Poster3
+  rating: Rating2
+  year: number
+}
+
+export interface Poster3 {
+  url: string
+  previewUrl: string
+}
+
+export interface Rating2 {
+  kp: number
+  imdb: number
+  filmCritics: number
+  russianFilmCritics: number
+  await: any
+}
+
+export interface Logo {
+  url: string
+}
+
+export interface Watchability {
+  items: any[]
+}
+
+export interface ImagesInfo {
+  framesCount: number
+}
+
+export interface ReleaseYear {
+  start: number
+  end: number
+}
+
+export interface Videos {
+  trailers: Trailer[]
+}
+
+export interface Trailer {
+  url: string
+  name: string
+  site: string
+  type: string
+}

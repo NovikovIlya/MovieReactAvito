@@ -1,21 +1,18 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import {
-  ChatAllRequest,
-  ChatAllResponse,
-  EmailReadRequest,
-  GetEmailRequest,
-  GetEmailResponse,
+
   GetUsersResponse,
   MovieApiOneType,
   MovieArray,
   Root2,
-  RootYts,
   SendMessageRequest,
   TrailerApi,
   UpdateMessageRequest,
   argType,
   getInfoUser,
   login,
+  movieAll,
+  oneMovieType,
   ratingType,
   renameType,
   repassType,
@@ -35,17 +32,17 @@ export const MovieApi = createApi({
   }),
   tagTypes: ['Fetch'],
   endpoints: (builder) => ({
-    fetchMovies: builder.query<any, string>({
+    fetchMovies: builder.query<movieAll, string>({
       query: (search) => ({
         url: `/search?query=${search}`,
       }),
     }),
-    fetchMoviesOne: builder.query<any, any>({
+    fetchMoviesOne: builder.query<oneMovieType, any>({
       query: (id) => ({
         url: `/${id}`,
       }),
     }),
-    fetchRandom: builder.query<any, string>({
+    fetchRandom: builder.query<oneMovieType, string>({
       query: (value) => ({
         url: `/${value}`,
       }),
