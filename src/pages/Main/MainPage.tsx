@@ -10,8 +10,6 @@ import { setMyName, setNumReduce } from '../../store/sliceMovie';
 const New = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-
-  const [imgSrc, setImageSrc] = useState(true);
   const [genre, setGenre] = useState('Россия');
   const [sortHow, setSortHow] = useState('12-18');
   const [sort, setSort] = useState('2020-2024');
@@ -52,24 +50,27 @@ const New = () => {
   const onErr = (error) => {
     error.target.src = placeholderImage;
   };
+
   const onChange: PaginationProps['onChange'] = (pageNumber) => {
-    // setNum(pageNumber.toString());
     dispatch(setNumReduce(pageNumber.toString()));
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
   };
   const onClickDrop = (value) => {
-    
     setSort(value);
   };
+
   const onClickDropTwo = (value) => {
     setGenre(value);
   };
+
   const onClickDropThree = (value) => {
     setSortHow(value);
   };
+  
   const onSearch = (value: string) => {};
   const filterOption = (input: string, option?: { label: string; value: string }) =>
     (option?.label ?? '').toLowerCase().includes(input.toLowerCase());
+
   const content = (
     <div>
       <p>Выберите год</p>
