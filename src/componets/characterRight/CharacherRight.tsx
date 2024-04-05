@@ -1,8 +1,8 @@
 import React from 'react';
 import styles from '../../pages/OneMovie/OneMovie.module.scss';
-import { useFetchMoviesOneQuery } from '../../store/MovieApi';
+import { oneMovieProps } from '../../types';
 
-export function CharacherRight({data}) {
+export function CharacherRight({dataMain:data}:oneMovieProps) {
   
   if(!data) return <>Произошла ошибка</>
   return (
@@ -15,7 +15,6 @@ export function CharacherRight({data}) {
         <div className={styles.item}>Год:</div>
         <div className={styles.itemRight}>{data.year}</div>
       </div>
-
       <div className={styles.ParentItem}>
         <div className={styles.item}>Страна:</div>
         <div className={styles.itemRight}>{data.countries[0].name}</div>
@@ -24,7 +23,6 @@ export function CharacherRight({data}) {
         <div className={styles.item}>Жанр:</div>
         <div className={styles.itemRight}>{data.genres[0].name}</div>
       </div>
-
       <div className={styles.ParentItem}>
         <div className={styles.item}>Возрастной рейтинг:</div>
         <div className={styles.itemRight}>{data.ageRating + '+'}</div>

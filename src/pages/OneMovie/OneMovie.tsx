@@ -78,15 +78,16 @@ const MovieCharacteristics = () => {
       }
     }
   }, [navigate, error]);
-  
+
   //скролл вверх, ждем когда выполнится асинронная задача
-  useEffect(()=>{
-    if(isLoading===false){
-      setIsAsyncComplete(true)
+  useEffect(() => {
+    if (isLoading === false) {
+      setIsAsyncComplete(true);
     }
-    if(isLoading===true){
-      setIsAsyncComplete(false)}
-  },[isLoading])
+    if (isLoading === true) {
+      setIsAsyncComplete(false);
+    }
+  }, [isLoading]);
 
   //скролл вверх
   useEffect(() => {
@@ -199,16 +200,22 @@ const MovieCharacteristics = () => {
                         </Popover>
                       </div>
                     </div>
-                    <CharacherRight data={data} />
+                    <CharacherRight dataMain={data} />
                   </div>
 
-                  {data.description && <><Divider className={styles.divid} />
+                  {data.description && (
+                    <>
+                      <Divider className={styles.divid} />
 
-                  <div className={styles.containerBottom}>
-                    <div className={styles.Bottom}>
-                      <div className={styles.itemRight}>{data.description}</div>
-                    </div>
-                  </div></>}
+                      <div className={styles.containerBottom}>
+                        <div className={styles.Bottom}>
+                          <div className={styles.itemRight}>
+                            {data.description}
+                          </div>
+                        </div>
+                      </div>
+                    </>
+                  )}
 
                   <Divider className={styles.divid} />
 
@@ -224,11 +231,20 @@ const MovieCharacteristics = () => {
                           <div className={styles.itemRight2}>
                             <div style={{ width: "100%" }}>
                               Рейтинг КП:
-                              <div  className={styles.rat}>{data ? " " + data.rating.kp : ""}</div>
+                              <div className={styles.rat}>
+                                {data ? " " + data.rating.kp : ""}
+                              </div>
                             </div>
-                            {data.rating.imdb  ? <div>
-                              Рейтинг Imdb: <div className={styles.rat}>{data ? " " + data.rating.imdb : ""}</div>
-                            </div> : ''}
+                            {data.rating.imdb ? (
+                              <div>
+                                Рейтинг Imdb:{" "}
+                                <div className={styles.rat}>
+                                  {data ? " " + data.rating.imdb : ""}
+                                </div>
+                              </div>
+                            ) : (
+                              ""
+                            )}
                           </div>
                         </div>
                       </div>

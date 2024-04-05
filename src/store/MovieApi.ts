@@ -105,8 +105,6 @@ export const torrentApi = createApi({
       }),
       providesTags:['torrent']
     }),
-    
-    // AVITO
     fetchMoviesPopular: builder.query<any, any>({
       query: (search) => ({
         url: `movie?${search}`,
