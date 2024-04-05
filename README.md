@@ -18,5 +18,6 @@
 
 ## Backend
 Для авторизации и логики с "избранным" используется бэк https://github.com/NovikovIlya/MovieReactBackend
+Для получение информации о фильмах используется API кинопоиска: https://api.kinopoisk.dev/documentation
   
   
