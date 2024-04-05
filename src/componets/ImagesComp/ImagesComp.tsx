@@ -5,8 +5,9 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "../../Main.css";
 import { Divider, Modal } from "antd";
+import {  oneMovieProps } from "../../types";
 
-const ImageComp = ({ dataMain }: any) => {
+const ImageComp = ({ dataMain }: oneMovieProps) => {
   const [modalData, setModaldata] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);

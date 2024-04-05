@@ -172,7 +172,7 @@ const MovieCharacteristics = () => {
                           className={styles.imag}
                           onError={onErr}
                           src={
-                            data
+                            data.poster.url
                               ? data.poster.url
                               : "https://t4.ftcdn.net/jpg/04/72/65/73/360_F_472657366_6kV9ztFQ3OkIuBCkjjL8qPmqnuagktXU.jpg"
                           }
@@ -202,13 +202,13 @@ const MovieCharacteristics = () => {
                     <CharacherRight data={data} />
                   </div>
 
-                  <Divider className={styles.divid} />
+                  {data.description && <><Divider className={styles.divid} />
 
                   <div className={styles.containerBottom}>
                     <div className={styles.Bottom}>
                       <div className={styles.itemRight}>{data.description}</div>
                     </div>
-                  </div>
+                  </div></>}
 
                   <Divider className={styles.divid} />
 
@@ -226,9 +226,9 @@ const MovieCharacteristics = () => {
                               Рейтинг КП:
                               <div  className={styles.rat}>{data ? " " + data.rating.kp : ""}</div>
                             </div>
-                            <div>
+                            {data.rating.imdb  ? <div>
                               Рейтинг Imdb: <div className={styles.rat}>{data ? " " + data.rating.imdb : ""}</div>
-                            </div>
+                            </div> : ''}
                           </div>
                         </div>
                       </div>

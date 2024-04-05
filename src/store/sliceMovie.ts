@@ -1,11 +1,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { MyData } from '../types';
 
-type MyData = {
-  oldUsername: string;
-  favorites?: any;
-  imdbID?: any;
-};
+
 
 export const deleteFavorites = createAsyncThunk(
   'post/deleteFavorites',
@@ -24,7 +21,7 @@ export const getFavorites = createAsyncThunk('post/getFavorites', async (dataBod
   return data;
 });
 
-export const addFavorites = createAsyncThunk('post/addFavorites', async (dataBody: any) => {
+export const addFavorites = createAsyncThunk('post/addFavorites', async (dataBody: MyData) => {
   const { data } = await axios.post('https://backmovie.onrender.com/auth/addfavorites', {
     oldUsername: dataBody.oldUsername,
     favoritesNew: dataBody.favorites,

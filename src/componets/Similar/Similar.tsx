@@ -5,8 +5,9 @@ import "slick-carousel/slick/slick-theme.css";
 import { Link } from "react-router-dom";
 import "../../Main.css";
 import { Divider } from "antd";
+import { oneMovieProps } from "../../types";
 
-const Similar = ({ dataMain }: any) => {
+const Similar = ({ dataMain }: oneMovieProps) => {
   const mobile =
     /Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(
       navigator.userAgent

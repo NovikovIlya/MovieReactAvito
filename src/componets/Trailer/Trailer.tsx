@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import styles from './Trailer.module.scss';
 import Skeleton from './Skeleton';
+import { oneMovieProps } from '../../types';
 
 
-const Trailer = ({ dataMain }: any) => {
+const Trailer = ({ dataMain }: oneMovieProps) => {
   const [alt, SetAlt] = useState('');
   const [urlValue, setUrlValue] = useState('');
 

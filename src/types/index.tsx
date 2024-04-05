@@ -1,3 +1,9 @@
+export type MyData = {
+  oldUsername: string;
+  favorites?: any;
+  imdbID?: any;
+};
+
 export type movieType = {
     Title: string;
     Year: string;
@@ -278,7 +284,9 @@ export type UpdateMessageRequest = {
 
 
 
-
+export type oneMovieProps = {
+  dataMain: oneMovieType
+}
 export type movieAll ={
   docs:oneMovieType[],
   error?:any,

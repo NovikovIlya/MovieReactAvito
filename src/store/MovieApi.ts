@@ -26,7 +26,7 @@ export const MovieApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: 'https://api.kinopoisk.dev/v1.4/movie',
     prepareHeaders: (headers) => {
       // headers.set('X-API-KEY', '1EDBRR5-VBQ4W08-QBDF41V-KZSDBV8');
-      headers.set('X-API-KEY', 'WF76VQQ-HQB4P5G-JFJH8DF-CRKDP1M');
+      headers.set('X-API-KEY', process.env.REACT_APP_API_KEY);
       return headers;
     },
   }),
@@ -93,7 +93,7 @@ export const torrentApi = createApi({
   reducerPath: 'torrent',
   baseQuery: fetchBaseQuery({ baseUrl: 'https://api.kinopoisk.dev/v1.4',
     prepareHeaders: (headers) => {
-      headers.set('X-API-KEY', 'WF76VQQ-HQB4P5G-JFJH8DF-CRKDP1M');
+      headers.set('X-API-KEY', process.env.REACT_APP_API_KEY);
       return headers;
     },
    }),
