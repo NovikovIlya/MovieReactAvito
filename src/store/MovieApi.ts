@@ -49,20 +49,7 @@ export const MovieApi = createApi({
 });
 
 
-export const trailerApi = createApi({
-  reducerPath: 'trailerApi',
-  baseQuery: fetchBaseQuery({
-    baseUrl: 'https://api.allorigins.win/raw?url=https://api.kinocheck.de/',
-  }),
-  tagTypes: ['trailerApi'],
-  endpoints: (builder) => ({
-    fetcTrailer: builder.query<TrailerApi, string>({
-      query: (id) => ({
-        url: `movies?imdb_id=${id}`,
-      }),
-    }),
-  }),
-});
+
 
 export const fetchCommentApi = createApi({
   reducerPath: 'fetchComment',
@@ -109,7 +96,6 @@ export const torrentApi = createApi({
     },
    }),
   tagTypes: ['torrent'],
-  // AVITO
   endpoints: (builder) => ({
     torrentFetch: builder.query<any, string>({
       query: (id) => ({
@@ -117,12 +103,7 @@ export const torrentApi = createApi({
       }),
       providesTags:['torrent']
     }),
-    similarFetch: builder.query<any, string>({
-      query: (genre) => ({
-        url: `list_movies.json?genre=${genre}&limit=10`,
-      }),
-      providesTags:['torrent']
-    }),
+    
     // AVITO
     fetchMoviesPopular: builder.query<any, any>({
       query: (search) => ({
@@ -178,7 +159,6 @@ export const info = createApi({
       }),
       invalidatesTags: ['info'],
     }),
-    //1-ответ   2-аргумент(тело запроса)
     LoginApiSet: builder.mutation<tokenType, login>({
       query: (add) => ({
         method: 'POST',
@@ -187,36 +167,7 @@ export const info = createApi({
       }),
       invalidatesTags: ['info']
     }),
-    // ChatAll: builder.mutation<ChatAllResponse[], ChatAllRequest>({
-    //   query: (add) => ({
-    //     method: 'POST',
-    //     url: 'chatall',
-    //     body: add,
-    //   }),
-    //   invalidatesTags: ['info']
-    // }),
-    // emailRead: builder.mutation<any, EmailReadRequest>({
-    //   query: (add) => ({
-    //     method: 'POST',
-    //     url: 'auth/emailReading',
-    //     body: add,
-    //   }),
-    //   invalidatesTags: ['info']
-    // }),
-    // getEmail: builder.mutation<GetEmailResponse, GetEmailRequest>({
-    //   query: (add) => ({
-    //     method: 'POST',
-    //     url: 'auth/getemail',
-    //     body: add,
-    //   }),
-    //   invalidatesTags: ['info']
-    // }),
-    // getUsers: builder.query<GetUsersResponse[], string>({
-    //   query: () => ({
-    //     url: 'auth/users',
-    //   }),
-    //   providesTags: ['info']
-    // }),
+    
     sendMessage: builder.mutation<SendMessageRequest[], SendMessageRequest>({
       query: (add) => ({
         method: 'POST',
@@ -225,30 +176,7 @@ export const info = createApi({
       }),
       invalidatesTags: ['info']
     }),
-    // updateMessage: builder.mutation<SendMessageRequest[], UpdateMessageRequest>({
-    //   query: (add) => ({
-    //     method: 'PUT',
-    //     url: 'auth/updatemessage',
-    //     body: add,
-    //   }),
-    //   invalidatesTags: ['info']
-    // }),
-    // getMessage: builder.mutation<SendMessageRequest[], GetEmailRequest>({
-    //   query: (add) => ({
-    //     method: 'POST',
-    //     url: 'auth/getmessage',
-    //     body: add,
-    //   }),
-    //   invalidatesTags: ['info']
-    // }),
-    // deleteMessage: builder.mutation<SendMessageRequest[], UpdateMessageRequest>({
-    //   query: (add) => ({
-    //     method: 'DELETE',
-    //     url: 'auth/deletemessage',
-    //     body: add,
-    //   }),
-    //   invalidatesTags: ['info']
-    // }),
+    
   }),
 });
 
@@ -297,11 +225,10 @@ export const auth = createApi({
 });
 
 export const { useFetchMoviesQuery,useFetchMoviesOneQuery } = MovieApi;
-export const { useFetcTrailerQuery } = trailerApi;
 export const { useFetchCommentQuery,useFetchRatingQuery ,useAddRatingMutation,useAddCommentMutation} = fetchCommentApi;
 export const { useAuthApiQuery, useLazyAuthApiQuery } = auth;
 
-export const { useTorrentFetchQuery,useSimilarFetchQuery,useFetchMoviesPopularQuery } = torrentApi;
+export const { useTorrentFetchQuery,useFetchMoviesPopularQuery } = torrentApi;
 
 export const {
   useInfoApiSetMutation,
@@ -310,14 +237,7 @@ export const {
   useRepassApiSetMutation,
   useRenameApiSetMutation,
   useLoginApiSetMutation,
-  // useChatAllMutation,
-  // useEmailReadMutation,
-  // useGetEmailMutation,
-  // useGetUsersQuery,
   useSendMessageMutation,
-  // useUpdateMessageMutation,
-  // useGetMessageMutation,
-  // useDeleteMessageMutation
 } = info;
 
 export const { useInfoApiSetTwoQuery,useGetUserApiSetTwoMutation } = infoTag;

@@ -114,7 +114,7 @@ function LoginPage() {
     return (
       <>
         <div className={styles.render}>
-          <p>Please wait, the server is waking up on Render (about 30 sec)</p>
+          <p>Пожалуйста подождите, сервер просыпается на Rendere (примено 30 сек)</p>
         </div>
       </>
     );
@@ -201,11 +201,11 @@ function LoginPage() {
 
         {lama && (
           <>
-            <Spin className={styles.spin} tip="Loading" size="large">
+            <Spin className={styles.spin} tip="Загрузка" size="large">
               <div className="content" />
             </Spin>
             <div className={styles.spin2}>
-              Please wait, the server is waking up on Render (about 30 sec)
+            Пожалуйста подождите, сервер просыпается на Rendere (примено 30 сек)
             </div>
           </>
         )}

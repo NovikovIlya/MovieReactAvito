@@ -3,17 +3,14 @@ import { Outlet } from 'react-router-dom';
 import MovieHeader from '../MovieHeader';
 
 
-
 const Layout = () => {
   return (
     <>
       <div >
-        <div >
-          <>
+        <div>
             <MovieHeader />
-            <div style={{ height: '150px' }}></div>
+            <div style={{ height: '120px' }}></div>
             <Outlet />
-          </>
         </div>
       </div>
     </>

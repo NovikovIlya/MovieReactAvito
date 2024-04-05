@@ -80,6 +80,10 @@ body{
 .editor-statusbar{
   display: none !important;
 }
+.ant-menu-light{
+  background-color: black;
+  color:white;
+}
 @media  screen and (max-width: 600px) {
   .zz{
     width: 90%;

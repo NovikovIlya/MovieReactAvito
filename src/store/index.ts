@@ -1,6 +1,6 @@
 import  sliceMovie  from './sliceMovie';
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
-import {   MovieApi,auth,fetchCommentApi,info,infoTag,torrentApi,trailerApi } from './MovieApi'; 
+import {   MovieApi,auth,fetchCommentApi,info,infoTag,torrentApi } from './MovieApi'; 
 
 
 import {
@@ -18,7 +18,6 @@ import { setupListeners } from '@reduxjs/toolkit/dist/query';
 
 const rootReducer = combineReducers({
     [MovieApi.reducerPath]: MovieApi.reducer,
-    [trailerApi.reducerPath]: trailerApi.reducer,
     [fetchCommentApi.reducerPath]: fetchCommentApi.reducer,
     [auth.reducerPath]: auth.reducer,
     [torrentApi.reducerPath]: torrentApi.reducer,
@@ -31,9 +30,8 @@ const rootReducer = combineReducers({
 const persistConfig = {
   key: 'root',
   storage,
-  blacklist:['toggleDropdown',infoTag.reducerPath,info.reducerPath,MovieApi.reducerPath,torrentApi.reducerPath,trailerApi.reducerPath,fetchCommentApi.reducerPath,auth.reducerPath]
+  blacklist:['toggleDropdown',infoTag.reducerPath,info.reducerPath,MovieApi.reducerPath,torrentApi.reducerPath,fetchCommentApi.reducerPath,auth.reducerPath]
 };
-
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const store = configureStore({
@@ -43,7 +41,7 @@ const store = configureStore({
         serializableCheck: {
           ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
         },
-      }).concat(infoTag.middleware,info.middleware,torrentApi.middleware,auth.middleware,MovieApi.middleware,trailerApi.middleware,fetchCommentApi.middleware);
+      }).concat(infoTag.middleware,info.middleware,torrentApi.middleware,auth.middleware,MovieApi.middleware,fetchCommentApi.middleware);
     },
 });
 
@@ -53,7 +51,6 @@ export const persiter = persistStore(store);
 export type TypeRootState = ReturnType<typeof store.getState>;
 
 export type RootState = ReturnType<typeof store.getState>;
-
 export type AppDispatch = typeof store.dispatch;
 
 export default store;

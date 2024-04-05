@@ -17,7 +17,7 @@ function Auth() {
     {
       label: (
         <Link className={styles.lin} to="/login" rel="noopener noreferrer">
-          Login
+          Войти
         </Link>
       ),
       key: "mail",
@@ -26,7 +26,7 @@ function Auth() {
     {
       label: (
         <Link className={styles.lin} to="/auth" rel="noopener noreferrer">
-          Sign up
+          Зарегистрироваться
         </Link>
       ),
       key: "alipay",
@@ -62,13 +62,14 @@ function Auth() {
   useEffect(() => {
     if (result.error) {
       const info = () => {
-        messageApi.info("This user was not found!");
+        //@ts-ignore
+        messageApi.info("Произошла ошибка! " + result.error.data.errors.errors[0].msg === 'Пароль не должен быть больше 4 и меньше 10 символов' ? 'Пароль не должен быть меньше 4 и больше 10 символов' : result.error.data.errors.errors[0].msg);
       };
       info();
     }
     if (result.data) {
       const infoSeccus = () => {
-        messageApi.info("Succesful!");
+        messageApi.info("Успешно зарегестрировались!");
       };
       infoSeccus();
     }
@@ -151,7 +152,7 @@ function Auth() {
           </div>
         </form>
         {lama && (
-          <Spin className={styles.spin} tip="Loading" size="large">
+          <Spin className={styles.spin} tip="Загрузка..." size="large">
             <div className="content" />
           </Spin>
         )}

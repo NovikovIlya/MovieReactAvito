@@ -182,12 +182,20 @@ const New = () => {
                 </div>
               );
             })}
+            
           </div>
+          {dataPopular?.docs?.length === 0 && (
+              <div className={styles.empty}>
+                <Empty />
+                <div className={styles.notText}>Ничего не найдено</div>
+              </div>
+            )}
           <div className={styles.pag}>
               <Pagination onChange={onChange} defaultCurrent={num} total={dataPopular.total} />
             </div>
         </Spin>
       )}
+      
     </>
   );
 };

@@ -1,15 +1,15 @@
-import { DislikeOutlined, LikeOutlined, UserOutlined } from '@ant-design/icons';
-import { Divider } from 'antd';
-import cn from 'classnames';
-import React, { useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
-import Markdown from 'react-markdown';
-import { Link } from 'react-router-dom';
-import { useAppSelector } from '../../hooks/redux';
-import { auth, useFetchCommentQuery } from '../../store/MovieApi';
-import { CommentProps } from '../../types';
-import Texteditor from '../TextEditor/Texteditor';
-import styles from './Comment.module.scss';
+import { DislikeOutlined, LikeOutlined, UserOutlined } from "@ant-design/icons";
+import { Divider } from "antd";
+import cn from "classnames";
+import React, { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import Markdown from "react-markdown";
+import { Link } from "react-router-dom";
+import { useAppSelector } from "../../hooks/redux";
+import { auth, useFetchCommentQuery } from "../../store/MovieApi";
+import { CommentProps } from "../../types";
+import Texteditor from "../TextEditor/Texteditor";
+import styles from "./Comment.module.scss";
 
 const Comment: React.FC<CommentProps> = ({ id }) => {
   //data
@@ -19,14 +19,20 @@ const Comment: React.FC<CommentProps> = ({ id }) => {
     positive: null,
     negative: null,
   });
-  const { data, isLoading } = useFetchCommentQuery(id, { refetchOnFocus: true });
+  const darkMode = useAppSelector((state) => state.sliceMovie.darkMode);
+  const { data, isLoading } = useFetchCommentQuery(id, {
+    refetchOnFocus: true,
+  });
   const mass = data ? data : [];
-
+  const darkModeTheme = cn({
+    [styles.container]: !darkMode,
+    [styles.container2]: darkMode,
+  });
   const {
     control,
     formState: { errors },
   } = useForm({
-    criteriaMode: 'all',
+    criteriaMode: "all",
   });
 
   //hooks
@@ -48,7 +54,11 @@ const Comment: React.FC<CommentProps> = ({ id }) => {
         }
       });
     });
-    const upldateAll = { all: allAray, positive: likeArray, negative: hateArray };
+    const upldateAll = {
+      all: allAray,
+      positive: likeArray,
+      negative: hateArray,
+    };
     setObjArray((objArray) => ({
       ...objArray,
       ...upldateAll,
@@ -66,16 +76,16 @@ const Comment: React.FC<CommentProps> = ({ id }) => {
         <Texteditor id={id} />
       </div>
 
-      {reversedArray.length > 0 && <Divider style={{ background: 'white' }} />}
+      {reversedArray.length > 0 && <Divider style={{ background: "white" }} />}
 
       <div className={styles.MainAll}>
         <div className={styles.Main}>
           {isLoading ? (
-            <h1>Загрузка...</h1>
+            <h1>Loading...</h1>
           ) : (
             reversedArray?.map((item) => {
               return (
-                <div key={item.id} >
+                <div key={item.id} className={darkModeTheme}>
                   {item.body.map((child) => {
                     return (
                       <div key={child.name} className={styles.containerChilcd}>
@@ -111,11 +121,15 @@ const Comment: React.FC<CommentProps> = ({ id }) => {
               <div className={styles.MainTwo__positive__desc}>Все</div>
             </div>
             <div className={styles.MainTwo__positive}>
-              <div className={styles.MainTwo__positive__text}>{objArray.positive}</div>
+              <div className={styles.MainTwo__positive__text}>
+                {objArray.positive}
+              </div>
               <div className={styles.MainTwo__positive__desc}>Позитивные</div>
             </div>
             <div className={styles.MainTwo__negative}>
-              <div className={styles.MainTwo__negative__text}>{objArray.negative}</div>
+              <div className={styles.MainTwo__negative__text}>
+                {objArray.negative}
+              </div>
               <div className={styles.MainTwo__positive__desc}>Негативные</div>
             </div>
           </div>

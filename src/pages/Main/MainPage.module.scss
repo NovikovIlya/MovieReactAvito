@@ -25,11 +25,18 @@
     width: 100%;
 }
 .pag{
-    background-color: gray;
+    background-color: #ffffff;
     height: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
+
+    
+    position: fixed;
+    /* display: flex; */
+    bottom: 0;
+    width: 100%;
+    z-index: 1000;
 }
 .btnDesc{
     border-radius: 20px 0 0 20px;
@@ -65,6 +72,11 @@
 }
 .drop2{
     margin-left: 10px;
+}
+.notText{
+    color:white;
+    text-align: center;
+    margin-bottom: 20px;
 }
 .zagr {
     position: absolute;

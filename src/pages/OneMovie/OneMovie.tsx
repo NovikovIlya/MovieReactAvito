@@ -30,6 +30,8 @@ import ImageComp from "../../componets/ImagesComp/ImagesComp";
 
 const MovieCharacteristics = () => {
   //data
+  const [isAsyncComplete, setIsAsyncComplete] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
   const [haveFav, setHaveFav] = useState(false);
   const favoriteMovie = useAppSelector(
     (state) => state.sliceMovie.favoritesNew
@@ -77,13 +79,29 @@ const MovieCharacteristics = () => {
       }
     }
   }, [navigate, error]);
+  
+  //скролл вверх, ждем когда выполнится асинронная задача
+  useEffect(()=>{
+    if(isLoading===false){
+      setIsAsyncComplete(true)
+    }
+    if(isLoading===true){
+      setIsAsyncComplete(false)}
+  },[isLoading])
 
   //скролл вверх
   useEffect(() => {
-    if (!isLoadTorr && !isLoading && window.scrollY > 0) {
-      window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+    // if (!isLoadTorr && !isLoading && window.scrollY > 0) {
+    //   window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+    // }
+    if (!isMounted && isAsyncComplete) {
+      window.scrollTo(0, 0);
+      setIsMounted(true);
     }
-  }, [pathname, isLoadTorr, isLoading, window.scrollY]);
+    return () => {
+      setIsMounted(false);
+    };
+  }, [isAsyncComplete]);
 
   //functions --------------
   const addFavoritesNew = (data) => {
@@ -210,10 +228,10 @@ const MovieCharacteristics = () => {
                           <div className={styles.itemRight2}>
                             <div style={{ width: "100%" }}>
                               Рейтинг КП:
-                              {data ? " " + data.rating.kp : ""}
+                              <div  className={styles.rat}>{data ? " " + data.rating.kp : ""}</div>
                             </div>
                             <div>
-                              Рейтинг Imdb: {data ? " " + data.rating.imdb : ""}
+                              Рейтинг Imdb: <div className={styles.rat}>{data ? " " + data.rating.imdb : ""}</div>
                             </div>
                           </div>
                         </div>
