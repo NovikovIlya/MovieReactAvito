@@ -191,7 +191,7 @@ const New = () => {
               </div>
             )}
           <div className={styles.pag}>
-              <Pagination onChange={onChange} defaultCurrent={num} total={dataPopular.total} />
+              <Pagination onChange={onChange} defaultCurrent={num} total={dataPopular?.total} />
             </div>
         </Spin>
       )}

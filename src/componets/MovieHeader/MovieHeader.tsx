@@ -24,23 +24,14 @@ const MovieHeader = () => {
   const location = useLocation();
   const { data: dataApi } = useAuthApiQuery('');
 
-  const [cccvalue, setCccValue] = useState<ChatAllResponse[] | string>('');
+  // const [cccvalue, setCccValue] = useState<ChatAllResponse[] | string>('');
 
-  const [mess, setMess] = useState(false);
+  // const [mess, setMess] = useState(false);
 
-  const [someFalse, setSomefalse] = useState(false);
+  // const [someFalse, setSomefalse] = useState(false);
   const placeholder = 'input text';
 
   //hooks
-
-
-
-
-
-
-
-
-
   useEffect(() => {
     if (location.pathname === '/login' || location.pathname === '/auth') {
       setHidd(true);

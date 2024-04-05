@@ -136,8 +136,8 @@ function LoginPage() {
             <Controller
               render={({ field }) => <AntdInput placeholder="Имя пользователя" {...field} />}
               rules={{
-                required: 'Field cannot be empty',
-                minLength: { value: 4, message: 'Minimum 4 characters' },
+                required: 'Поле не может быть пустым',
+                minLength: { value: 4, message: 'Минимум 4 буквы' },
                 shouldUnregister: false,
               }}
               name="username"
@@ -165,8 +165,8 @@ function LoginPage() {
               <AntdInput disabled={dis} placeholder="Пароль" type="password" {...field} />
             )}
             rules={{
-              required: 'Field cannot be empty',
-              minLength: { value: 4, message: 'Minimum 4 characters' },
+              required: 'Поле не может быть пустым',
+              minLength: { value: 4, message: 'Минимум 4 буквы' },
             }}
             disabled={dis}
             name="password"

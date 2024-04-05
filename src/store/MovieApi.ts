@@ -45,6 +45,11 @@ export const MovieApi = createApi({
         url: `/${id}`,
       }),
     }),
+    fetchRandom: builder.query<any, string>({
+      query: (value) => ({
+        url: `/${value}`,
+      }),
+    }),
   }),
 });
 
@@ -224,7 +229,7 @@ export const auth = createApi({
   }),
 });
 
-export const { useFetchMoviesQuery,useFetchMoviesOneQuery } = MovieApi;
+export const { useFetchMoviesQuery,useFetchMoviesOneQuery,useFetchRandomQuery } = MovieApi;
 export const { useFetchCommentQuery,useFetchRatingQuery ,useAddRatingMutation,useAddCommentMutation} = fetchCommentApi;
 export const { useAuthApiQuery, useLazyAuthApiQuery } = auth;
 

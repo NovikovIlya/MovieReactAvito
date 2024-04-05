@@ -13,8 +13,8 @@ import Layout from "../componets/Layout/Layout";
 import { Favorites } from "../componets/Favorites/Favorites";
 import New from "../pages/Main/MainPage";
 import Info from "../componets/Info/Info";
-
 import Not from "../componets/Not/Not";
+import RandomMovie from "../pages/RandomMovie/RandomMovie";
 
 function App() {
   const darkMode = useAppSelector((state) => state.sliceMovie.darkMode);
@@ -33,6 +33,7 @@ function App() {
               <Route path="/auth" element={<Auth />} />
               <Route path="/profile" element={<Profile />} />
               <Route path="/favorites" element={<Favorites />} />
+              <Route path="/random" element={<RandomMovie />} />
               <Route index element={<New />} />
 
               <Route path="/info/:name" element={<Info />} />

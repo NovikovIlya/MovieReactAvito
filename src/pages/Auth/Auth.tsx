@@ -93,8 +93,8 @@ function Auth() {
                 <AntdInput placeholder="Имя пользователя" {...field} />
               )}
               rules={{
-                required: "Field cannot be empty",
-                minLength: { value: 4, message: "Minimum 4 characters" },
+                required: "Поле не может быть пустым",
+                minLength: { value: 4, message: "Минимум 4 буквы" },
               }}
               name="username"
               control={control}
@@ -122,8 +122,8 @@ function Auth() {
               <AntdInput placeholder="Пароль" type="password" {...field} />
             )}
             rules={{
-              required: "Field cannot be empty",
-              minLength: { value: 4, message: "Minimum 4 characters" },
+              required: "Поле не может быть пустым",
+              minLength: { value: 4, message: "Минимум 4 буквы" },
             }}
             name="password"
             control={control}

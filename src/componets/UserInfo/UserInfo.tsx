@@ -8,6 +8,7 @@ import {
   WechatOutlined,
   UsergroupAddOutlined,
   MailOutlined,
+  QuestionOutlined
 } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
 import { Button, Dropdown, Space } from 'antd';
@@ -54,6 +55,13 @@ const UserInfo = () => {
       </Link>,
       '3',
       <StarOutlined />,
+    ),
+    getItem(
+      <Link className={styles.lin} to="/random">
+        Рандомный фильм
+      </Link>,
+      '7',
+      <QuestionOutlined />,
     ),
 
     getItem(<div onClick={exitFnc}>Выход</div>, '6', <LogoutOutlined />),
