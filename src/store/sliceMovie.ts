@@ -56,11 +56,9 @@ export const sliceMovie = createSlice({
   reducers: {
     changePag: (state, action) => {
       state.num = action.payload;
-      // window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
     },
     setNumReduce: (state, action) => {
       state.num = action.payload;
-      // window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
     },
     addMovie: (state, action) => {
       state.films = action.payload;
@@ -73,13 +71,12 @@ export const sliceMovie = createSlice({
     },
     addFavorite: (state, action) => {
       if (state.favorite.find((item) => item.imdbID === action.payload.imdbID)) {
-        alert('The movie has already been added to your favorites');
+        alert('Фильм уже добавлен в избранное');
         return;
       }
       state.favorite = [...state.favorite, action.payload];
     },
     deleteFavorite: (state, action) => {
-
       state.favorite = state.favorite.filter((item) => item.imdbID !== action.payload.imdbID);
     },
     darkMode: (state) => {

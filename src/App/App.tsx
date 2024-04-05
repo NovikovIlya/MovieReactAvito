@@ -1,20 +1,20 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "../../Main.css";
+import "../Main.css";
 import { Route, Routes } from "react-router-dom";
-import MovieCharacteristics from "../../pages/OneMovie/OneMovie";
+import MovieCharacteristics from "../pages/OneMovie/OneMovie";
 
-import LoginPage from "../../pages/Login/LoginPage";
-import Auth from "../Auth/Auth";
+import LoginPage from "../pages/Login/LoginPage";
+import Auth from "../pages/Auth/Auth";
 import { ConfigProvider, theme } from "antd";
-import { useAppSelector } from "../../hooks/redux";
-import Profile from "../Profile/Profile";
-import Layout from "../Layout/Layout";
-import { Favorites } from "../Favorites/Favorites";
-import New from "../../pages/Main/MainPage";
-import Info from "../Info/Info";
+import { useAppSelector } from "../hooks/redux";
+import Profile from "../componets/Profile/Profile";
+import Layout from "../componets/Layout/Layout";
+import { Favorites } from "../componets/Favorites/Favorites";
+import New from "../pages/Main/MainPage";
+import Info from "../componets/Info/Info";
 
-import Not from "../Not/Not";
+import Not from "../componets/Not/Not";
 
 function App() {
   const darkMode = useAppSelector((state) => state.sliceMovie.darkMode);

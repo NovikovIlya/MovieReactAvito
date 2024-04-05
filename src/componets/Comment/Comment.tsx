@@ -19,17 +19,11 @@ const Comment: React.FC<CommentProps> = ({ id }) => {
     positive: null,
     negative: null,
   });
-  const darkMode = useAppSelector((state) => state.sliceMovie.darkMode);
   const { data, isLoading } = useFetchCommentQuery(id, { refetchOnFocus: true });
   const mass = data ? data : [];
-  const darkModeTheme = cn({
-    [styles.container]: !darkMode,
-    [styles.container2]: darkMode,
-  });
+
   const {
     control,
-    register,
-    handleSubmit,
     formState: { errors },
   } = useForm({
     criteriaMode: 'all',
@@ -77,11 +71,11 @@ const Comment: React.FC<CommentProps> = ({ id }) => {
       <div className={styles.MainAll}>
         <div className={styles.Main}>
           {isLoading ? (
-            <h1>Loading...</h1>
+            <h1>Загрузка...</h1>
           ) : (
             reversedArray?.map((item) => {
               return (
-                <div key={item.id} className={darkModeTheme}>
+                <div key={item.id} >
                   {item.body.map((child) => {
                     return (
                       <div key={child.name} className={styles.containerChilcd}>
@@ -114,15 +108,15 @@ const Comment: React.FC<CommentProps> = ({ id }) => {
           <div className={styles.MainTwo}>
             <div className={styles.MainTwo__all}>
               <div>{objArray.all}</div>
-              <div className={styles.MainTwo__positive__desc}>All</div>
+              <div className={styles.MainTwo__positive__desc}>Все</div>
             </div>
             <div className={styles.MainTwo__positive}>
               <div className={styles.MainTwo__positive__text}>{objArray.positive}</div>
-              <div className={styles.MainTwo__positive__desc}>Positive</div>
+              <div className={styles.MainTwo__positive__desc}>Позитивные</div>
             </div>
             <div className={styles.MainTwo__negative}>
               <div className={styles.MainTwo__negative__text}>{objArray.negative}</div>
-              <div className={styles.MainTwo__positive__desc}>Negative</div>
+              <div className={styles.MainTwo__positive__desc}>Негативные</div>
             </div>
           </div>
         )}

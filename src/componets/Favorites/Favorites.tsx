@@ -89,7 +89,7 @@ export const Favorites = () => {
     <>
       {favoriteMovie && isLoad ? (
         <div className={styles.zagr}>
-          <Spin tip="Loading" size="large">
+          <Spin tip="Загрузка..." size="large">
             <div data-testid="z" className="content" />
           </Spin>
         </div>
@@ -104,14 +104,14 @@ export const Favorites = () => {
                     <img className={styles.img} key={item.imdbID} src={item.Poster} alt="no" />
                     <div className={styles.bottom}>
                       <Link to={`/${item.imdbID}`}>
-                        <Button className={styles.btnDesc}>Go to moive</Button>
+                        <Button className={styles.btnDesc}>Перейти в фильм</Button>
                       </Link>
-                      <Popover content={content2} title="">
+                      <Popover  title="">
                         <Button
                           className={styles.btnPlus}
                           onClick={() => delFavoriteNew(item)}
                           type="primary">
-                          -
+                          Удалить
                         </Button>
                       </Popover>
                     </div>

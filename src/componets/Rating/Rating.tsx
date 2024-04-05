@@ -30,7 +30,7 @@ const Rating = ({ id }) => {
     messageApi.open({
       type: 'success',
       content:
-        'Your rating has been successfully submitted! It will be summarized with all scores within 30 seconds',
+        'Ваша оценка зачтена! Она будет суммирована со всеми баллами в течении 30 секунд.',
     });
   };
 

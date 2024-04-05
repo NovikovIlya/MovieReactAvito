@@ -191,7 +191,7 @@ const Profile = () => {
     <>
       {isFetching ? (
         <div className={styles.zagr}>
-          <Spin tip="Loading" size="large">
+          <Spin tip="Загрузка..." size="large">
             <div className="content" />
           </Spin>
         </div>
@@ -208,7 +208,7 @@ const Profile = () => {
               />
               <div className={styles.imageParent} style={{ width: '100%' }}>
                 <Button className={styles.btnImage} onClick={selFile}>
-                  Select file
+                  Выбрать файл
                 </Button>
                 <input
                   style={{ display: 'none' }}
@@ -220,7 +220,7 @@ const Profile = () => {
                 <Input
                   className={styles.inpImgae}
                   type="submit"
-                  value="Send"
+                  value="Отправить"
                   onClick={onClickImage}
                 />
               </div>
@@ -228,12 +228,12 @@ const Profile = () => {
               <Divider className={styles.divid} />
 
               <div className={styles.parent}>
-                <div className={styles.text}>Current name: </div>
+                <div className={styles.text}>Текущее имя: </div>
                 <div className={styles.text}> {dataApi?.username}</div>
               </div>
 
               <div className={styles.parent1}>
-                <div className={styles.text}>New username: </div>
+                <div className={styles.text}>Новое имя: </div>
                 <div className={styles.newUsername}>
                   <Form
                     name="basic"
@@ -267,7 +267,7 @@ const Profile = () => {
               <Divider className={styles.divid} />
 
               <div className={styles.parent3}>
-                <div className={styles.text}>Current password: </div>
+                <div className={styles.text}>Текущий пасспорт: </div>
                 <div className={styles.inp2}>
                   <Form
                     name="basicPassword"
@@ -300,7 +300,7 @@ const Profile = () => {
               </div>
 
               <div className={styles.parent}>
-                <div className={styles.text}>New password: </div>
+                <div className={styles.text}>Новый пасспорт: </div>
                 <div className={styles.newUsername}>
                   <Form
                     name="basicPasswordNew"
@@ -334,7 +334,7 @@ const Profile = () => {
               <Divider />
 
               <div>
-                <h1>Information</h1>
+                <h1>Информация</h1>
               </div>
 
               <Divider />
@@ -350,7 +350,7 @@ const Profile = () => {
                   />
                 </div>
                 <div className={styles.btnInfo}>
-                  <Button onClick={cliclArea}>Send</Button>
+                  <Button onClick={cliclArea}>Отправить</Button>
                 </div>
               </div>
             </div>

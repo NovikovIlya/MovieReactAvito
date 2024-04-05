@@ -135,8 +135,6 @@ const Search: React.FC<SearchProps> = (props) => {
     const data3 = data2.split(',')[0];
     const data4 = data2.split(',')[1].trim()
     const es = data?.docs?.find((item) => {
-      console.log(data4,item.year)
-      console.log(data3,item.name)
       return item.name === data3 && String(item.year) === String(data4)
     });
     if (es) {

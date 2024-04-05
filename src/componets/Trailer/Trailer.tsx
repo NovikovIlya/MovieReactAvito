@@ -1,18 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { useFetcTrailerQuery } from '../../store/MovieApi';
 import styles from './Trailer.module.scss';
 import Skeleton from './Skeleton';
-import { argType } from '../../types';
 
-const Trailer = ({ id, title, year }: argType) => {
-  const { data, isLoading } = useFetcTrailerQuery(id);
+
+const Trailer = ({ dataMain }: any) => {
   const [alt, SetAlt] = useState('');
   const [urlValue, setUrlValue] = useState('');
 
   useEffect(() => {
     const fetchYoutube = async () => {
       let response = await fetch(
-        `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${title} ${year}&type=video&key=AIzaSyC0eVRG5nSA0E-bPOjsBjq98YPeicDViSE`,
+        `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${dataMain.name} ${dataMain.year}&type=video&key=AIzaSyC0eVRG5nSA0E-bPOjsBjq98YPeicDViSE`,
       );
       let result = await response.json();
       const altYoutubeData = result?.items?.[0].id.videoId;
@@ -21,22 +19,15 @@ const Trailer = ({ id, title, year }: argType) => {
     };
     fetchYoutube();
 
-    const urlTrailer = data
-      ? data.error
-        ? alt
-        : `https://www.youtube.com/embed/${data?.videos[0]?.youtube_video_id}`
-      : alt;
+    const urlTrailer = alt
+
 
     setUrlValue(urlTrailer);
-  }, [alt, data, title, year]);
+  }, [alt,  dataMain.name, dataMain.name]);
 
   return (
     <>
-      {isLoading ? (
-        <div>
-          <Skeleton />
-        </div>
-      ) : (
+      { (
         <>
           <div>
             <div className="video-responsive">

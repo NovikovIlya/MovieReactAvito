@@ -27,12 +27,12 @@ export function CharacherRight({data}) {
 
       <div className={styles.ParentItem}>
         <div className={styles.item}>Возрастной рейтинг:</div>
-        <div className={styles.itemRight}>{data.ageRating}</div>
+        <div className={styles.itemRight}>{data.ageRating + '+'}</div>
       </div>
-      <div className={styles.ParentItem}>
-        <div className={styles.item}>Актеры:</div>
-        <div className={styles.itemRight}>{data.persons ? data.persons.map((item,index)=>(index !== data.persons.length - 1 ? item.name+', ' : item.name)) : 'Нет актеров'}</div>
-      </div>
+      {data.slogan&&<div className={styles.ParentItem}>
+        <div className={styles.item}>Слоган:</div>
+        <div className={styles.itemRight}>{'"' + data.slogan + '"'}</div>
+      </div>}
       {data.seasonsInfo.length>0 && <div className={styles.ParentItem}>
         <div className={styles.item}>Сезонов:</div>
         <div className={styles.itemRight}>{data.seasonsInfo.length}</div>

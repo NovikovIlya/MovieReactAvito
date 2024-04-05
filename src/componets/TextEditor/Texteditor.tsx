@@ -25,7 +25,7 @@ const Texteditor = ({ id }) => {
     messageApi.open({
       type: 'success',
       content:
-        'Your message has been sent! After passing moderation, the message will appear! (Approximately 30 seconds)',
+        'Ваше сообщение отправлено! Сейчас оно проходит процесс модерации! (Примерно 30 сек)',
     });
   };
   const onChange = (value: string) => {
@@ -74,8 +74,8 @@ const Texteditor = ({ id }) => {
         defaultValue="like"
         onChange={handleChange}
         options={[
-          { value: 'like', label: 'like' },
-          { value: 'hate', label: 'hate' },
+          { value: 'like', label: 'Понравилось' },
+          { value: 'hate', label: 'Не понравилось' },
         ]}
       />
       <div className={styles.bc}>
@@ -86,7 +86,7 @@ const Texteditor = ({ id }) => {
         />
       </div>
       <Button className={styles.btn} onClick={() => handleCreate()}>
-        Add comment
+        Добавить комментарий
       </Button>
     </>
   );

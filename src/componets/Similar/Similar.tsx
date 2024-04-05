@@ -1,67 +1,57 @@
-import React, { useEffect, useState } from 'react';
-import styles from './Similar.module.scss';
-import { useSimilarFetchQuery } from '../../store/MovieApi';
-import { MovieYts } from '../../types';
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-import { Link } from 'react-router-dom';
-import '../../Main.css';
+import styles from "./Similar.module.scss";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import { Link } from "react-router-dom";
+import "../../Main.css";
+import { Divider } from "antd";
 
-export type SimilarProps = {
-  gengreText: string;
-};
-
-const Similar = ({ gengreText }: SimilarProps) => {
-  const [text, setText] = useState(null);
-  const { data, isLoading, refetch } = useSimilarFetchQuery(text, { refetchOnFocus: true });
-  const [arrayYts, setArrayYts] = useState<MovieYts[]>([]);
+const Similar = ({ dataMain }: any) => {
   const mobile =
     /Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(
-      navigator.userAgent,
+      navigator.userAgent
     );
   const settings = {
     centerMode: true,
-    slidesToShow: mobile ? 1 : arrayYts?.length > 2 ? 3 : 1,
+    slidesToShow: mobile ? 1 : dataMain.similarMovies?.length > 2 ? 3 : 1,
     speed: 500,
   };
-
-  useEffect(() => {
-    setArrayYts(data?.data.movies);
-    if (gengreText === undefined) {
-      return;
-    }
-    if (gengreText !== undefined) {
-      setText(gengreText);
-      refetch();
-    }
-  }, [data, gengreText, refetch]);
+  const onErr = (error) => {
+    error.target.src =
+      "https://www.zidart.rs/build/images/background/no-results-bg.2d2c6ee3.png";
+  };
 
   return (
     <>
-      <div className={styles.container}>
-        <h2 className={styles.head}>If you liked this movie:</h2>
-        <Slider {...settings}>
-          {isLoading ? (
-            <div></div>
-          ) : (
-            arrayYts?.map((item) => {
-              return (
-                <Link
-                  key={item.imdb_code}
-                  className={styles.lin}
-                  target="_blank"
-                  to={`/${item.imdb_code}`}>
-                  <div>
-                    <img className={styles.img} src={item.medium_cover_image} alt="no" />
-                    <div className={styles.text}>{item.title}</div>
-                  </div>
-                </Link>
-              );
-            })
-          )}
-        </Slider>
-      </div>
+      {dataMain.similarMovies.length > 0 && (
+        <div className={styles.container}>
+          <Divider className={styles.divid} />
+          <h2 className={styles.head}>Похожие фильмы:</h2>
+          <Slider {...settings}>
+            {dataMain &&
+              dataMain.similarMovies?.map((item) => {
+                return (
+                  <Link
+                    key={item.id}
+                    className={styles.lin}
+                    target="_blank"
+                    to={`/${item.id}`}
+                  >
+                    <div>
+                      <img
+                        onError={onErr}
+                        className={styles.img}
+                        src={item.poster.url}
+                        alt="no"
+                      />
+                      <div className={styles.text}>{item.name}</div>
+                    </div>
+                  </Link>
+                );
+              })}
+          </Slider>
+        </div>
+      )}
     </>
   );
 };

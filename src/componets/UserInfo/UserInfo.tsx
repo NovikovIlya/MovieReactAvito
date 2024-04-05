@@ -36,27 +36,27 @@ const UserInfo = () => {
   const items: MenuProps['items'] = [
     getItem(
       <Link className={styles.lin} to="/">
-        Home
+        Главная
       </Link>,
       '1',
       <HomeOutlined />,
     ),
     getItem(
       <Link className={styles.lin} to="/profile">
-        Profile
+        Профиль
       </Link>,
       '5',
       <UserOutlined />,
     ),
     getItem(
       <Link className={styles.lin} to="/favorites">
-        Favorite
+        Избранное
       </Link>,
       '3',
       <StarOutlined />,
     ),
 
-    getItem(<div onClick={exitFnc}>Exit</div>, '6', <LogoutOutlined />),
+    getItem(<div onClick={exitFnc}>Выход</div>, '6', <LogoutOutlined />),
     ,
   ];
   const menuProps = {

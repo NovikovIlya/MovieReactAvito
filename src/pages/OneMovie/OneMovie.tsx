@@ -1,55 +1,55 @@
-import { CharacherRight } from '../../componets/characterRight/CharacherRight';
-import { useEffect, useState } from 'react';
-import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
+import { CharacherRight } from "../../componets/characterRight/CharacherRight";
+import { useEffect, useState } from "react";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import {
   useAuthApiQuery,
   useFetchMoviesOneQuery,
   useTorrentFetchQuery,
-} from '../../store/MovieApi';
-import styles from './OneMovie.module.scss';
-import Trailer from '../../componets/Trailer/Trailer';
-import Comment from '../../componets/Comment/Comment';
-import { Divider, Popover, Spin, Breadcrumb, ConfigProvider, Button, Modal, Result } from 'antd';
-import { UserOutlined } from '@ant-design/icons';
-import { StarFilled, PlusOutlined, CheckOutlined } from '@ant-design/icons';
-import cn from 'classnames';
-import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import Rating from '../../componets/Rating/Rating';
-import Similar from '../../componets/Similar/Similar';
-import { addFavorites } from '../../store/sliceMovie';
-import ImageComp from '../../componets/ImagesComp/ImagesComp';
-import { Empty } from 'antd';
+} from "../../store/MovieApi";
+import styles from "./OneMovie.module.scss";
+import Trailer from "../../componets/Trailer/Trailer";
+import Comment from "../../componets/Comment/Comment";
+import {
+  Divider,
+  Popover,
+  Spin,
+  Breadcrumb,
+  ConfigProvider,
+  Button,
+  Modal,
+  Result,
+} from "antd";
+import { UserOutlined } from "@ant-design/icons";
+import { PlusOutlined, CheckOutlined } from "@ant-design/icons";
+import cn from "classnames";
+import { useAppDispatch, useAppSelector } from "../../hooks/redux";
+import Rating from "../../componets/Rating/Rating";
+import Similar from "../../componets/Similar/Similar";
+import { addFavorites } from "../../store/sliceMovie";
+import ImageComp from "../../componets/ImagesComp/ImagesComp";
 
 const MovieCharacteristics = () => {
   //data
   const [haveFav, setHaveFav] = useState(false);
-  const favoriteMovie = useAppSelector((state) => state.sliceMovie.favoritesNew);
+  const favoriteMovie = useAppSelector(
+    (state) => state.sliceMovie.favoritesNew
+  );
+  const navigate = useNavigate();
+  const { id } = useParams();
+  const { data: dataTorrent, isLoading: isLoadTorr } = useTorrentFetchQuery(id);
+  const { data: dataApi, error, isLoading: isLoadApi } = useAuthApiQuery("");
+  const { data, isLoading } = useFetchMoviesOneQuery(id);
   const { pathname } = useLocation();
   const dispatch = useAppDispatch();
-  const content = (
-    <div>
-      <p>Add to favorites</p>
-    </div>
-  );
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [tor, setTor] = useState([]);
-  const [gengreText, setGenreText] = useState<string>('');
-  const navigate = useNavigate();
-  const {  year, id } = useParams();
-  // const arg = {
-  //   title: title,
-  //   year: year,
-  //   id: id,
-  // };
-  const { data: dataTorrent, isLoading: isLoadTorr } = useTorrentFetchQuery(id);
-  const { data: dataApi, error, isFetching, isLoading: isLoadApi } = useAuthApiQuery('');
-  const { data, isLoading } = useFetchMoviesOneQuery(id);
-  const { data: dataPoster, isLoading: isLoadPoster } = useTorrentFetchQuery(id);
   const darkMode = useAppSelector((state) => state.sliceMovie.darkMode);
   const darkModeTheme = cn({
     [styles.Main]: !darkMode,
   });
-  const Title = data?.name 
+  const content = (
+    <div>
+      <p>Добавить в избранное</p>
+    </div>
+  );
 
   //useeffect -------------
   //логика с избранными
@@ -65,51 +65,25 @@ const MovieCharacteristics = () => {
     }
   }, [id, favoriteMovie]);
 
-  //логика с жанром и выкидываем если не авторизован
+  // Выкидываем если не авторизован
   useEffect(() => {
     if (error) {
-      if ('data' in error && typeof error.data === 'object') {
-        if ('message' in error.data) {
-          if (error.data.message === 'Пользователь не авторизован') {
-            navigate('/login');
+      if ("data" in error && typeof error.data === "object") {
+        if ("message" in error.data) {
+          if (error.data.message === "Пользователь не авторизован") {
+            navigate("/login");
           }
         }
       }
     }
-    if (data) {
-      if (data.Genre) {
-        var text = data.Genre.split(',')[0];
-      } else {
-        text = 'Action';
-      }
-    }
-    setGenreText(text);
-  }, [data, navigate, dataApi, error]);
+  }, [navigate, error]);
 
   //скролл вверх
   useEffect(() => {
-    if (!isLoadTorr && !isLoading && !isLoadPoster && window.scrollY > 0) {
-      window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+    if (!isLoadTorr && !isLoading && window.scrollY > 0) {
+      window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
     }
-  }, [pathname, isLoadTorr, isLoading, isLoadPoster, window.scrollY]);
-
-  //проверка на торрент-файлы
-  useEffect(() => {
-    const dt = dataTorrent?.data?.movies?.[0].torrents.map((item) => {
-      return {
-        size: item.size,
-        url: item.url,
-        quality: item.quality,
-        type: item.type,
-      };
-    });
-    const torrentMassiv = dataTorrent?.data?.movies?.[0].torrents?.[1] ? (
-      dt
-    ) : (
-      <Result status="404" title="404" subTitle="Sorry, torrent links no longer exist." />
-    );
-    setTor(torrentMassiv);
-  }, [dataTorrent]);
+  }, [pathname, isLoadTorr, isLoading, window.scrollY]);
 
   //functions --------------
   const addFavoritesNew = (data) => {
@@ -119,23 +93,11 @@ const MovieCharacteristics = () => {
     };
     dispatch(addFavorites(mainData));
   };
-  const showModal = () => {
-    setIsModalOpen(true);
-  };
-  const handleOk = () => {
-    setIsModalOpen(false);
-  };
-  const handleCancel = () => {
-    setIsModalOpen(false);
-  };
-  const onErr = (error) => {
-    error.target.src = placeholderImage;
-  };
 
-  if (dataPoster) {
-    var placeholderImage =
-      'https://www.zidart.rs/build/images/background/no-results-bg.2d2c6ee3.png';
-  }
+  const onErr = (error) => {
+    error.target.src =
+      "https://www.zidart.rs/build/images/background/no-results-bg.2d2c6ee3.png";
+  };
 
   return (
     <>
@@ -143,7 +105,7 @@ const MovieCharacteristics = () => {
         <div className={darkModeTheme}>
           {isLoading ? (
             <div className={styles.zagr}>
-              <Spin tip="Loading" size="large">
+              <Spin tip="Загрузка..." size="large">
                 <div className="content" />
               </Spin>
             </div>
@@ -156,24 +118,27 @@ const MovieCharacteristics = () => {
                       theme={{
                         components: {
                           Breadcrumb: {
-                            itemColor: 'rgba(39, 97, 245, 0.8)',
-                            linkColor: 'rgba(39, 97, 245, 0.8)',
-                            separatorColor: 'rgba(39, 97, 245, 0.8)',
-                            lastItemColor: 'rgba(39, 97, 245, 0.8)',
-                            linkHoverColor: 'rgba(39, 97, 245, 0.8)',
+                            itemColor: "rgba(39, 97, 245, 0.8)",
+                            linkColor: "rgba(39, 97, 245, 0.8)",
+                            separatorColor: "rgba(39, 97, 245, 0.8)",
+                            lastItemColor: "rgba(39, 97, 245, 0.8)",
+                            linkHoverColor: "rgba(39, 97, 245, 0.8)",
                           },
                         },
-                      }}>
+                      }}
+                    >
                       <Breadcrumb
                         items={[
                           {
                             onClick: () => {
-                              navigate('/');
+                              navigate("/");
                             },
                             title: (
                               <>
                                 <UserOutlined />
-                                <span style={{ cursor: 'pointer' }}>Movies</span>
+                                <span style={{ cursor: "pointer" }}>
+                                  Фильмы
+                                </span>
                               </>
                             ),
                           },
@@ -195,38 +160,10 @@ const MovieCharacteristics = () => {
                           src={
                             data
                               ? data.poster.url
-                              : 'https://t4.ftcdn.net/jpg/04/72/65/73/360_F_472657366_6kV9ztFQ3OkIuBCkjjL8qPmqnuagktXU.jpg'
+                              : "https://t4.ftcdn.net/jpg/04/72/65/73/360_F_472657366_6kV9ztFQ3OkIuBCkjjL8qPmqnuagktXU.jpg"
                           }
                           alt="no"
                         />
-                        {/* <div className={styles.lin2Parent}>
-                          <Button className={styles.lin2Btn} type="primary" onClick={showModal}>
-                            Download
-                          </Button>
-                          <Modal
-                            title=""
-                            open={isModalOpen}
-                            onOk={handleOk}
-                            onCancel={handleCancel}>
-                            {tor.length > 0 ? (
-                              tor.map((item) => {
-                                return (
-                                  <div key={item.url}>
-                                    <Link to={item.url}>
-                                      <div>
-                                        {item.quality}, {item.size}, {item.type}
-                                      </div>
-                                    </Link>
-                                  </div>
-                                );
-                              })
-                            ) : (
-                              <>
-                                <Empty />
-                              </>
-                            )}
-                          </Modal>
-                        </div> */}
                       </div>
 
                       <div className={styles.plus}>
@@ -253,44 +190,46 @@ const MovieCharacteristics = () => {
 
                   <Divider className={styles.divid} />
 
-                  {/* <div className={styles.containerBottom}>
+                  <div className={styles.containerBottom}>
                     <div className={styles.Bottom}>
-                      <div className={styles.itemRight}>{data.Plot}</div>
+                      <div className={styles.itemRight}>{data.description}</div>
                     </div>
                   </div>
 
-                  <Divider className={styles.divid} /> */}
+                  <Divider className={styles.divid} />
 
                   <div className={styles.twoItemParent}>
                     <div className={styles.twoItem}>
                       <div className={styles.containerTrailer}>
                         <div>
-                          {/* <Trailer id={arg.id} title={data.Title} year={data.Year} /> */}
+                          <Trailer dataMain={data} />
                         </div>
                       </div>
                       <div className={styles.containerRating}>
                         <div className={styles.Bottom}>
                           <div className={styles.itemRight2}>
-                            Рейтинг КП: {data
-                              ? data.rating.kp
-                              : ''}
+                            <div style={{ width: "100%" }}>
+                              Рейтинг КП:
+                              {data ? " " + data.rating.kp : ""}
+                            </div>
+                            <div>
+                              Рейтинг Imdb: {data ? " " + data.rating.imdb : ""}
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
-
+                  <p>Рейтинг PrivetMovie:</p>
                   <Rating id={id} />
 
-                  {/* <div className="row wh">
-                    <ImageComp id={id} />
-                  </div> */}
+                  <div className="row wh">
+                    <ImageComp dataMain={data} />
+                  </div>
 
-                  {/* <Divider className={styles.divid} /> */}
-
-                  {/* <div className="row wh">
-                    <Similar gengreText={gengreText} />
-                  </div> */}
+                  <div className="row wh">
+                    <Similar dataMain={data} />
+                  </div>
 
                   <Divider className={styles.divid} />
 

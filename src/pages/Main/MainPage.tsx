@@ -140,6 +140,8 @@ const New = () => {
                 options={[
                   { value: 'Россия', label: 'Россия' },
                   { value: 'США', label: 'США' },
+                  { value: 'Франция', label: 'Франция' },
+                  { value: 'Великобритания', label: 'Великобритания' },
                 ]}
               />
             </Popover>
