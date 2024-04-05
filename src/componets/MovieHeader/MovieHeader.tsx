@@ -53,30 +53,7 @@ const MovieHeader = () => {
       {
         <div className={styles.main}>
           <div>
-            {/* {mess && (
-              <div>
-              
-                <FloatButton
-                  icon={<CommentOutlined />}
-                  description="New message in chat"
-                  shape="square"
-                  style={{ right: 24 }}
-                  onClick={onClickMess}
-                />
-              </div>
-            )}
-            {someFalse && (
-              <div>
-                {' '}
-                <FloatButton
-                  icon={<CommentOutlined />}
-                  description="New message in mail"
-                  shape="square"
-                  style={{ right: 24 }}
-                  onClick={onClickMail}
-                />
-              </div>
-            )} */}
+          
           </div>
           <div className={styles.container}>
             <div className={styles.title}>

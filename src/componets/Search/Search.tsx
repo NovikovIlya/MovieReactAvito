@@ -7,9 +7,11 @@ import { useFetchMoviesQuery } from '../../store/MovieApi';
 import { addMovie } from '../../store/sliceMovie';
 import { SearchProps } from '../../types';
 import styles from './Search.module.scss';
+import { useDebounceValue } from 'usehooks-ts'
 
 const Search: React.FC<SearchProps> = (props) => {
   //data
+  const [debouncedValue, setValue] = useDebounceValue('', 1000)
   const navigate = useNavigate();
   const [dataMass, setDataMass] = useState([]);
   const [val2, setVal2] = useState('');
@@ -19,8 +21,9 @@ const Search: React.FC<SearchProps> = (props) => {
     onChange = (e: React.ChangeEvent<HTMLInputElement>) => handleMovie(e),
   } = props;
   const val = useAppSelector((state) => state.sliceMovie.value);
-  const { data, refetch } = useFetchMoviesQuery(val2);
+  const { data, refetch } = useFetchMoviesQuery(debouncedValue);
   const dispatch = useAppDispatch();
+ 
 
   //hooks
   useEffect(() => {
@@ -125,13 +128,15 @@ const Search: React.FC<SearchProps> = (props) => {
             'https://m.media-amazon.com/images/M/MV5BMTY0NTUyMDQwOV5BMl5BanBnXkFtZTgwNjAwMTA0MDE@._V1_SX300.jpg',
         },
       ];
-      dispatch(addMovie(keka));
-      refetch();
+      // dispatch(addMovie(keka));
+      // refetch();
     }
   }, [dispatch, refetch, data]);
 
+
   //functions
   const onSelect = (data2: string) => {
+   
     const data3 = data2.split(',')[0];
     const data4 = data2.split(',')[1].trim()
     const es = data?.docs?.find((item) => {
@@ -146,8 +151,9 @@ const Search: React.FC<SearchProps> = (props) => {
 
   const handleMovie = (e) => {
     const text = e;
+    setValue(text)
     setVal2(text);
-    if (text.length < 1) {
+    if (debouncedValue.length < 1) {
       setDataMass([]);
     }
   };
