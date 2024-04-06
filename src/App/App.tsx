@@ -4,13 +4,13 @@ import "../Main.css";
 import { Route, Routes } from "react-router-dom";
 import MovieCharacteristics from "../pages/OneMovie/OneMovie";
 
-import LoginPage from "../pages/Login/LoginPage";
-import Auth from "../pages/Auth/Auth";
+import LoginPage from "../pages/Authorization/Login/LoginPage";
+import Auth from "../pages/Authorization/Auth/Auth";
 import { ConfigProvider, theme } from "antd";
 import { useAppSelector } from "../hooks/redux";
 import Profile from "../componets/Profile/Profile";
 import Layout from "../componets/Layout/Layout";
-import { Favorites } from "../componets/Favorites/Favorites";
+import { Favorites } from "../pages/Favorites/Favorites";
 import New from "../pages/Main/MainPage";
 import Info from "../componets/Info/Info";
 import Not from "../componets/Not/Not";

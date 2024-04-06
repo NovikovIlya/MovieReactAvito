@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
-import { useAuthApiQuery, useLoginApiSetMutation } from '../../store/MovieApi';
+import { useAuthApiQuery, useLoginApiSetMutation } from '../../../store/MovieApi';
 import { Link, useNavigate } from 'react-router-dom';
 import { ErrorMessage } from '@hookform/error-message';
 import _ from 'lodash';
@@ -9,9 +9,9 @@ import { Input as AntdInput, Button as AndtdButton, message, Spin } from 'antd';
 import { LoginOutlined, DatabaseOutlined } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
 import { Menu } from 'antd';
-import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import { toggleRender } from '../../store/sliceMovie';
-import { FormInputs } from '../../types';
+import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
+import { toggleRender } from '../../../store/sliceMovie';
+import { FormInputs } from '../../../types';
 
 function LoginPage() {
   const items: MenuProps['items'] = [

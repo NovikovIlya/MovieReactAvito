@@ -84,6 +84,9 @@ body{
   background-color: black;
   color:white;
 }
+.ant-popover{
+  z-index: 9999999999999999999999999;
+}
 @media  screen and (max-width: 600px) {
   .zz{
     width: 90%;

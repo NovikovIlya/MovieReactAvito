@@ -3,13 +3,13 @@ import { useForm, Controller } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { ErrorMessage } from "@hookform/error-message";
 import _ from "lodash";
-import styles from "../../pages/Login/LoginPage.module.scss";
+import styles from "../Login/LoginPage.module.scss";
 import { Input as AntdInput, Button as AndtdButton, message, Spin } from "antd";
 import { LoginOutlined, DatabaseOutlined } from "@ant-design/icons";
 import type { MenuProps } from "antd";
 import { Menu } from "antd";
-import { FormInputs } from "../../types";
-import { useRegistrApiSetMutation } from "../../store/MovieApi";
+import { FormInputs } from "../../../types";
+import { useRegistrApiSetMutation } from "../../../store/MovieApi";
 
 function Auth() {
   const [lama, setLama] = useState(false);
