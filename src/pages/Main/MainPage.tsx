@@ -5,7 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAuthApiQuery, useFetchMoviesPopularQuery } from '../../store/MovieApi';
 import styles from './MainPage.module.scss';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import { setMyName, setNumReduce } from '../../store/sliceMovie';
+import { changePag, setMyName, setNumReduce } from '../../store/sliceMovie';
 
 const New = () => {
   const dispatch = useAppDispatch();
@@ -52,19 +52,23 @@ const New = () => {
   };
 
   const onChange: PaginationProps['onChange'] = (pageNumber) => {
+
     dispatch(setNumReduce(pageNumber.toString()));
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
   };
   const onClickDrop = (value) => {
     setSort(value);
+   
   };
 
   const onClickDropTwo = (value) => {
     setGenre(value);
+    
   };
 
   const onClickDropThree = (value) => {
     setSortHow(value);
+    
   };
   
   const onSearch = (value: string) => {};
@@ -88,21 +92,11 @@ const New = () => {
   );
   
 
+    
   return (
     <>
-      {isFetch &&(
-        <div className={styles.zagr2}>
-        <Spin tip="Загрузка" size="large">
-          <div className="content" />
-        </Spin>
-      </div>
-      )}
-      {isLoading ?  (
-        <div className={styles.zagr}>
-        </div>
-      ) : (
-        <Spin spinning={isLoadingAuth} tip="Загрузка...">
-          <div className={styles.parentDrop}>
+
+       <div className={styles.parentDrop}>
             <Popover content={content} title="">
               <Select
                 showSearch
@@ -163,6 +157,13 @@ const New = () => {
               />
             </Popover>
           </div>
+      {isLoadingAuth ?  (
+        <div className={styles.zagr100}>
+          Загружаем данные пользователя...
+        </div>
+      ) : (
+        <Spin className={styles.hhh} spinning={isFetch} tip="Загрузка...">
+         
           <div className={styles.parent}>
             {dataPopular?.docs?.map((item) => {
               return (
@@ -174,7 +175,7 @@ const New = () => {
                         className={styles.img}
                         onError={onErr}
                         key={item.imdb_code}
-                        src={item.poster.url}
+                        src={item.poster.previewUrl}
                         alt="no"
                       />
                     </Link>
@@ -193,7 +194,7 @@ const New = () => {
               </div>
             )}
           <div className={styles.pag}>
-              <Pagination onChange={onChange} defaultCurrent={num} total={dataPopular?.total} />
+              <Pagination   onChange={onChange} defaultCurrent={num} total={dataPopular?.total} />
             </div>
         </Spin>
       )}

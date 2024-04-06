@@ -137,6 +137,7 @@ export const {
   setClosed,
   setEmailAll,
   setMyName,
-  setNumReduce
+  setNumReduce,
+  changePag
 } = sliceMovie.actions;
 export default sliceMovie.reducer;
