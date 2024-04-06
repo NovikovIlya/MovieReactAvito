@@ -7,7 +7,6 @@
    `npm run dev`
 5. Откройте браузер и перейдите по адресу `http://localhost:3000` для просмотра приложения.
 
-
 ## Основные используемые технологии
 - React
 - Redux Toolkit
@@ -18,8 +17,8 @@
 - usehooks-ts
 
 ## Backend
-Для авторизации и логики с "избранным" используется бэк https://github.com/NovikovIlya/MovieReactBackend
-Для получение информации о фильмах используется API кинопоиска: https://api.kinopoisk.dev/documentation
+- Для авторизации и логики с "избранным" используется бэк https://github.com/NovikovIlya/MovieReactBackend
+- Для получение информации о фильмах используется API кинопоиска: https://api.kinopoisk.dev/documentation
 
 ## Структура проекта:
 * `/src/`:
