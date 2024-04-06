@@ -19,7 +19,14 @@ import {
   tokenType,
 } from '../types';
 
-
+export type RandomType = {
+  genre: string,
+  country: string,
+  type: number,
+  rating:string,
+  network:' string',
+  year: string
+}
 
 export const MovieApi = createApi({
   reducerPath: 'apiMovies',
@@ -37,14 +44,14 @@ export const MovieApi = createApi({
         url: `/search?query=${search}`,
       }),
     }),
-    fetchMoviesOne: builder.query<oneMovieType, any>({
+    fetchMoviesOne: builder.query<any, any>({
       query: (id) => ({
         url: `/${id}`,
       }),
     }),
-    fetchRandom: builder.query<oneMovieType, string>({
-      query: (value) => ({
-        url: `/${value}`,
+    fetchRandom: builder.query<any, any>({
+      query: (obj) => ({
+        url: `?genres.name=${obj.genre}&countries.name=${obj.country}&typeNumber=${obj.type}&year=${obj.year}&rating.kp=${obj.rating}&networks.items.name=${obj.network}`,
       }),
     }),
   }),

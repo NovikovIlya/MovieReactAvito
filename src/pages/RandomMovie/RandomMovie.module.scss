@@ -32,9 +32,10 @@
     font-weight: 700;
   }
   .photo {
+    margin: 0 auto;
     border-radius: 20px 20px 0 0;
-    width: 100%;
-    height: 45vh;
+    width: 300px;
+    height: 200px;
   }
   .personContainer {
     border-radius: 20px;
@@ -95,6 +96,26 @@
     display: flex;
     justify-content: center;
   }
+  .filters{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    gap:10px;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  .parenNotTex{
+    display: flex;
+    justify-content: center;
+  }
+  .notText{
+ 
+    margin-top: 10px;
+    color:red
+  }
+  .notText2{
+    margin-top: 10px;
+    color:white;
+  }
   
   @media screen and (max-width: 600px) {
     .personContainer {
@@ -102,5 +123,8 @@
     }
     .name__text {
       font-size: 14px;
+    }
+    .filters{
+      grid-template-columns: auto;
     }
   }
