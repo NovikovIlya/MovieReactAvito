@@ -18,17 +18,13 @@ export const Favorites = () => {
   const isLoad = useAppSelector((state) => state.sliceMovie.isLoad);
   const favoriteMovie = useAppSelector((state) => state.sliceMovie.favoritesNew);
   const favoriteMovieUnique =  favoriteMovie ? (favoriteMovie.filter((elem, index) => {
-    return favoriteMovie.findIndex((item) => item.Title === elem.Title) === index;
+    return favoriteMovie.findIndex((item) => item.name === elem.name) === index;
   })) : [];
   const { data: dataApi } = useAuthApiQuery('');
   const navigate = useNavigate();
   const { error } = useAuthApiQuery('');
   const dispatch = useAppDispatch();
-  const content2 = (
-    <div>
-      <p>Remove favorites</p>
-    </div>
-  );
+
   const mobile =
     /Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(
       navigator.userAgent,
@@ -56,7 +52,6 @@ export const Favorites = () => {
       if ('username' in dataApi) {
         const data = { oldUsername: dataApi?.username };
         const dataFav = dispatch(getFavorites(data));
-
       }
     }
   }, [dataApi, dispatch]);
@@ -79,10 +74,10 @@ export const Favorites = () => {
   const delFavoriteNew = async (item) => {
     const data = {
       oldUsername: dataApi.username,
-      imdbID: item.imdbID,
+      id: item.id,
     };
     await dispatch(deleteFavorites(data));
-    await dispatch(deletefavoritesNew(data.imdbID));
+    await dispatch(deletefavoritesNew(data.id));
   };
 
   return (
@@ -99,11 +94,11 @@ export const Favorites = () => {
             {favoriteMovie.length > 0 &&
               favoriteMovieUnique.map((item) => {
                 return (
-                  <div key={item.imdbID} className="rowChild f-flex justify-content-start m-3">
-                    <div className={styles.text}>{item.Title}</div>
-                    <img className={styles.img} key={item.imdbID} src={item.Poster} alt="no" />
+                  <div key={item.id} className="rowChild f-flex justify-content-start m-3">
+                    <div className={styles.text}>{item.name}</div>
+                    <img className={styles.img} key={item.id} src={item.poster.previewUrl} alt="no" />
                     <div className={styles.bottom}>
-                      <Link to={`/${item.imdbID}`}>
+                      <Link to={`/${item.id}`}>
                         <Button className={styles.btnDesc}>Перейти в фильм</Button>
                       </Link>
                       <Popover  title="">

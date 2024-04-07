@@ -526,3 +526,12 @@ export interface Trailer {
   site: string
   type: string
 }
+
+export type RandomType = {
+  genre: string,
+  country: string,
+  type: number,
+  rating:string,
+  network:' string',
+  year: string
+}

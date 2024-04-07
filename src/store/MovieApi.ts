@@ -19,20 +19,11 @@ import {
   tokenType,
 } from '../types';
 
-export type RandomType = {
-  genre: string,
-  country: string,
-  type: number,
-  rating:string,
-  network:' string',
-  year: string
-}
 
 export const MovieApi = createApi({
   reducerPath: 'apiMovies',
   baseQuery: fetchBaseQuery({ baseUrl: 'https://api.kinopoisk.dev/v1.4/movie',
     prepareHeaders: (headers) => {
-      // headers.set('X-API-KEY', '1EDBRR5-VBQ4W08-QBDF41V-KZSDBV8');
       headers.set('X-API-KEY', process.env.REACT_APP_API_KEY);
       return headers;
     },

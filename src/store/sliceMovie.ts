@@ -6,9 +6,9 @@ import { MyData } from '../types';
 
 export const deleteFavorites = createAsyncThunk(
   'post/deleteFavorites',
-  async (dataBody: MyData) => {
+  async (dataBody: any) => {
     const { data } = await axios.delete('https://backmovie.onrender.com/auth/deleteFavorites', {
-      data: { oldUsername: dataBody.oldUsername, imdbID: dataBody.imdbID },
+      data: { oldUsername: dataBody.oldUsername, id: dataBody.id },
     });
     return data;
   },
@@ -93,7 +93,7 @@ export const sliceMovie = createSlice({
     },
     deletefavoritesNew: (state, action) => {
       state.favoritesNew = state.favoritesNew.filter((item) => {
-        return item.imdbID !== action.payload;
+        return item.id !== action.payload;
       });
     },
     setClosed: (state, action) => {
