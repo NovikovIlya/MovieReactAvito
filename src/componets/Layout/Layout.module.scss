@@ -1,0 +1,9 @@
+.lay{
+    height:120px
+}
+
+@media screen and (max-width:600px) {
+    .lay{
+        height: 10px;
+    }
+}
