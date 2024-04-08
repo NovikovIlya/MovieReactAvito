@@ -97,6 +97,7 @@ const RandomMovie = () => {
   };
   const imageLoadOnError = () => {};
 
+  // логика рандомного числа и выбор фильма из массива
   useEffect(() => {
     if (data?.docs?.length > 0) {
       const min = 0;
@@ -111,18 +112,6 @@ const RandomMovie = () => {
       if(random < min){
         random = 0
       }
-      console.log(random)
-      // if(random === oldRandom && random === min){
-      //  random = min+1
-      // }
-      // if(random === oldRandom && random === max){
-      //   random = max-1
-      // }else{
-      //   random = oldRandom + 1
-      // }
-     
-      
-
       setOldRandom(random);
       setRealData(data.docs[random]);
     }
