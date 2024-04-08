@@ -7,7 +7,7 @@ import FiltersRandom from "../../componets/filtersRandom/FiltersRandom";
 
 const RandomMovie = () => {
   // data
-  const [oldRandom,setOldRandom ] =useState(null)
+  const [oldRandom, setOldRandom] = useState(null);
   const [realObj, setRealObj] = useState({
     genre: "драма",
     country: "США",
@@ -58,7 +58,7 @@ const RandomMovie = () => {
       <p>Выберите сеть</p>
     </div>
   );
-  const isNotData = !isFetching && realData.length === 0 
+  const isNotData = !isFetching && realData?.length === 0;
   // functions
   const onSearch = (value: string) => {};
   const filterOption = (
@@ -96,22 +96,27 @@ const RandomMovie = () => {
     });
   };
   const imageLoadOnError = () => {};
-  
 
   useEffect(() => {
     if (data?.docs?.length > 0) {
-      const randomFn = ()=>{   
-        const min = 1;
-        const max = data.docs.length;
-        let random = Math.floor(Math.random() * (max - min + 1)) + min - 1;
-        random === oldRandom ? random = Math.floor(Math.random() * (max - min + 1)) + min - 1 :  random = random
-       
-        return random
+      const min = 1;
+      const max = data?.docs?.length;
+      let random = Math.floor(Math.random() * (max - min + 1)) + min - 1;
+      if(random === oldRandom && random === min){
+       random = min+1
       }
-     const ran = randomFn()
-      setOldRandom(ran)
-      setRealData(data.docs[ran]);
-    }   if (data?.docs?.length === 0) { 
+      if(random === oldRandom && random === max){
+        random = max-1
+      }else{
+        random = oldRandom + 1
+      }
+     
+      
+
+      setOldRandom(random);
+      setRealData(data.docs[random]);
+    }
+    if (data?.docs?.length === 0) {
       setRealData([]);
     }
   }, [data]);
