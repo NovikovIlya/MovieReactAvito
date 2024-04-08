@@ -101,12 +101,15 @@ const RandomMovie = () => {
     if (data?.docs?.length > 0) {
       const min = 0;
       const max = data?.docs?.length;
-      let random = Math.floor(Math.random() * (max - min + 1)) + min  ;
+      let random = Math.floor(Math.random() * (max - min + 1)) + min - 1  ;
       if(data.docs.length === 1){
         random = 0
       }
       if(random > max){
         random = max - 1
+      }
+      if(random < min){
+        random = 0
       }
       console.log(random)
       // if(random === oldRandom && random === min){
