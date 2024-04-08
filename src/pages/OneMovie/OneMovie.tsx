@@ -1,10 +1,9 @@
 import { CharacherRight } from "../../componets/characterRight/CharacherRight";
 import { useEffect, useState } from "react";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import {
   useAuthApiQuery,
-  useFetchMoviesOneQuery,
-  useTorrentFetchQuery,
+  useFetchMoviesOneQuery
 } from "../../store/MovieApi";
 import styles from "./OneMovie.module.scss";
 import Trailer from "../../componets/Trailer/Trailer";
@@ -15,11 +14,7 @@ import {
   Spin,
   Breadcrumb,
   ConfigProvider,
-  Button,
-  Modal,
-  Result,
 } from "antd";
-import { UserOutlined } from "@ant-design/icons";
 import { PlusOutlined, CheckOutlined } from "@ant-design/icons";
 import cn from "classnames";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux";
@@ -27,6 +22,7 @@ import Rating from "../../componets/Rating/Rating";
 import Similar from "../../componets/Similar/Similar";
 import { addFavorites } from "../../store/sliceMovie";
 import ImageComp from "../../componets/ImagesComp/ImagesComp";
+import Breadcrumbs from "../../componets/Breadcrumb/Breadcrumb";
 
 const MovieCharacteristics = () => {
   //data
@@ -41,7 +37,7 @@ const MovieCharacteristics = () => {
   const { data: dataApi, error, isLoading: isLoadApi } = useAuthApiQuery("");
   const { data, isLoading } = useFetchMoviesOneQuery(id);
   const dispatch = useAppDispatch();
-  const darkMode = useAppSelector((state) => state.sliceMovie.darkMode);
+  const {darkMode} = useAppSelector((state) => state.sliceMovie);
   const darkModeTheme = cn({
     [styles.Main]: !darkMode,
   });
@@ -128,40 +124,7 @@ const MovieCharacteristics = () => {
               <div>
                 <div className={styles.container2}>
                   <div className={styles.container2ss}>
-                    <ConfigProvider
-                      theme={{
-                        components: {
-                          Breadcrumb: {
-                            itemColor: "rgba(39, 97, 245, 0.8)",
-                            linkColor: "rgba(39, 97, 245, 0.8)",
-                            separatorColor: "rgba(39, 97, 245, 0.8)",
-                            lastItemColor: "rgba(39, 97, 245, 0.8)",
-                            linkHoverColor: "rgba(39, 97, 245, 0.8)",
-                          },
-                        },
-                      }}
-                    >
-                      <Breadcrumb
-                        items={[
-                          {
-                            onClick: () => {
-                              navigate("/");
-                            },
-                            title: (
-                              <>
-                                <UserOutlined />
-                                <span style={{ cursor: "pointer" }}>
-                                  Фильмы
-                                </span>
-                              </>
-                            ),
-                          },
-                          {
-                            title: data?.name,
-                          },
-                        ]}
-                      />
-                    </ConfigProvider>
+                    <Breadcrumbs data={data}/>
                   </div>
                 </div>
                 <div className={styles.container}>
