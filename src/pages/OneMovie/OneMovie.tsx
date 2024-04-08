@@ -40,7 +40,6 @@ const MovieCharacteristics = () => {
   const { id } = useParams();
   const { data: dataApi, error, isLoading: isLoadApi } = useAuthApiQuery("");
   const { data, isLoading } = useFetchMoviesOneQuery(id);
-  const { pathname } = useLocation();
   const dispatch = useAppDispatch();
   const darkMode = useAppSelector((state) => state.sliceMovie.darkMode);
   const darkModeTheme = cn({
