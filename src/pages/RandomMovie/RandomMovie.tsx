@@ -59,7 +59,6 @@ const RandomMovie = () => {
     </div>
   );
   const isNotData = !isFetching && realData.length === 0 
-  console.log('realData.length',realData)
   // functions
   const onSearch = (value: string) => {};
   const filterOption = (
@@ -107,7 +106,6 @@ const RandomMovie = () => {
         const random = Math.floor(Math.random() * (max - min + 1)) + min - 1;
      
         if(random===oldRandom){
-          console.log('совпадение',random,oldRandom)
           return randomFn()
         }
         return random
