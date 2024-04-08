@@ -28,5 +28,43 @@
     * `store/`: Хранилище типов
     * `hooks/`: Кастомные хуки
     * `index.js`: Точка входа приложения.
-  
-  
+
+## Примеры запросов и ответов
+Для запросов используется RTK Query
+
+`export const MovieApi = createApi({
+  reducerPath: 'apiMovies',
+  baseQuery: fetchBaseQuery({ baseUrl: 'https://api.kinopoisk.dev/v1.4/movie',
+    prepareHeaders: (headers) => {
+      headers.set('X-API-KEY', process.env.REACT_APP_API_KEY);
+      return headers;
+    },
+  }),
+  tagTypes: ['Fetch'],
+  endpoints: (builder) => ({
+    ...
+    fetchMoviesOne: builder.query<Data, string>({
+      query: (id) => ({
+        url: `/${id}`,
+      }),
+    }),
+    ...
+  }),
+});`
+ Пример получение данных о фильме по id:
+Запрос
+`useFetchMoviesOneQuery(id)`
+Ответ
+`
+{
+  data: {
+    title: "Фильм",
+    description: "Описание фильма",
+    poster: {url: "https://image.jpg"},
+    rating: {
+      kp: 7.5,
+      imdb: 8.2
+    }
+  }
+}
+`
