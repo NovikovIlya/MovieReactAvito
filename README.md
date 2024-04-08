@@ -32,7 +32,8 @@
 ## Примеры запросов и ответов
 Для запросов используется RTK Query
 
-`export const MovieApi = createApi({
+```
+export const MovieApi = createApi({
   reducerPath: 'apiMovies',
   baseQuery: fetchBaseQuery({ baseUrl: 'https://api.kinopoisk.dev/v1.4/movie',
     prepareHeaders: (headers) => {
@@ -50,12 +51,16 @@
     }),
     ...
   }),
-});`
- Пример получение данных о фильме по id:
-Запрос
-`useFetchMoviesOneQuery(id)`
-Ответ
-`
+});
+```
+
+Пример получение данных о фильме по id:
+- Запрос
+```
+useFetchMoviesOneQuery(id)
+```
+- Ответ
+```
 {
   data: {
     title: "Фильм",
@@ -67,4 +72,4 @@
     }
   }
 }
-`
+```
